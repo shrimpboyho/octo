@@ -12,17 +12,31 @@ int len(char* string){
 
 }
 
-char* strip(char* string){
+char* lstrip(char* string){
 	
+	if(!string) 
+		return;
+
 	/* Trim off leading whitespace */
 	while(*string == ' '){
 		string++;
 	}
-
-	/*TODO: Trim off trailing whitespace*/
-
+	
 	return string;
 
+}
+
+char* tstrip(char* string){
+
+	return "THIS IS NOT IMPLEMENTED YET";
+
+}
+
+char* strip(char* string){
+
+	char* lstring = lstrip(string);
+	char* finalString = tstrip(lstring);
+	return lstring;
 }
 
 #endif /* OCTO_H */

@@ -11,7 +11,9 @@ int main( void ){
 	if(len(testy) == 6) printf("TEST PASSED.\n");
 
 	/* strip() test*/
-	char* testy2 = "       NARC!";
+	char buffer2[60];
+	char* testy2 = buffer2;
+	testy2 = "       NARC!      ";
 	printf("The stripped string: \"%s\"\n",strip(testy2));
 	return 0;
 }
