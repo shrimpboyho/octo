@@ -2,7 +2,7 @@
 #define OCTO_H
 
 int len(char* string){
-	
+
 	int i = 0;
 	while(*string != '\0'){
 		i++;
@@ -13,7 +13,7 @@ int len(char* string){
 }
 
 char* lstrip(char* string){
-	
+
 	if(!string) 
 		return;
 
@@ -21,14 +21,18 @@ char* lstrip(char* string){
 	while(*string == ' '){
 		string++;
 	}
-	
+
 	return string;
 
 }
 
 char* tstrip(char* string){
-
-	return "THIS IS NOT IMPLEMENTED YET";
+	
+	char* end = string + len(string) - 1;
+        while (end >= string && *end == ' ')
+                end--;
+        *(end + 1) = '\0';
+	return string;
 
 }
 
@@ -36,7 +40,7 @@ char* strip(char* string){
 
 	char* lstring = lstrip(string);
 	char* finalString = tstrip(lstring);
-	return lstring;
+	return finalString;
 }
 
 #endif /* OCTO_H */

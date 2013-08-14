@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "octo.h"
-
+#include <string.h>
 int main( void ){
 
 	printf("Unit testing has begun\n");
@@ -11,9 +11,8 @@ int main( void ){
 	if(len(testy) == 6) printf("TEST PASSED.\n");
 
 	/* strip() test*/
-	char buffer2[60];
+	char buffer2[60] = "       NARC!      ";
 	char* testy2 = buffer2;
-	testy2 = "       NARC!      ";
 	printf("The stripped string: \"%s\"\n",strip(testy2));
 	return 0;
 }
