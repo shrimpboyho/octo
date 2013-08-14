@@ -1,9 +1,9 @@
-octo
+#octo
 ====
 
 A Library for Manipulating Strings in C
 
-###How to Install
+##How to Install
 
 First get a copy of the library by git cloning it:
 
@@ -18,7 +18,7 @@ Then you can just include the header file in your code:
 #include "octo.h"
 ```
 
-###Functions
+##Functions
 
 ####```char* strip(char* thing)```
 	
