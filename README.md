@@ -15,7 +15,7 @@ cd octo
 
 Then you can just include the header file in your code:
 
-```c
+```
 #include "octo.h"
 ```
 
