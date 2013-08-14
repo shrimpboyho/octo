@@ -20,19 +20,19 @@ Then you can just include the header file in your code:
 
 ###Functions
 
-##```char* strip(char* thing)```
+####```char* strip(char* thing)```
 	
 Trims off both leading and trailing whitespace on ```thing```. It modifies the original buffer.
 
-##```char* lstrip(char* thing)```
+####```char* lstrip(char* thing)```
 	
 Trims off only the leading whitespace on ```thing```. It modifies the original buffer.
 
-##```char* tstrip(char* thing)```
+####```char* tstrip(char* thing)```
 	
 Trims off only the trailing whitespace on ```thing```. It modifies the original buffer.
 
-##```char* slice(char* thing, int start, int end)```
+####```char* slice(char* thing, int start, int end)```
 	
 Creates a new string from ```thing``` that consists of the characters from the starting index (```start```), to the ending index (```end```), and returns a ```char*``` to it. It does not modify the original buffer.
 	
