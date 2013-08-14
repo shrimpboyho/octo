@@ -1,6 +1,9 @@
 #ifndef OCTO_H
 #define OCTO_H
 
+#include <stdlib.h>
+#include <string.h>
+
 int len(char* string){
 
 	int i = 0;
@@ -47,6 +50,17 @@ char* strip(char* string){
 	
 	return finalString;
 
+}
+
+char* slice(char* s, int start, int end){
+
+	/* Create a new identical buffer */
+	char* buff = (char*) malloc(len(s) + 1);
+	strcpy(buff, s);
+
+	/*TODO: Implement slicing*/
+	
+	return buff;
 }
 
 #endif /* OCTO_H */
