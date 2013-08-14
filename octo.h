@@ -8,6 +8,7 @@ int len(char* string){
 		i++;
 		*string++;
 	}
+	
 	return i;
 
 }
@@ -28,19 +29,24 @@ char* lstrip(char* string){
 
 char* tstrip(char* string){
 	
+	/* Trim off trailing whitespace */
 	char* end = string + len(string) - 1;
         while (end >= string && *end == ' ')
                 end--;
         *(end + 1) = '\0';
+	
 	return string;
 
 }
 
 char* strip(char* string){
 
+	/* Trim off both leading and trailing whitespace */
 	char* lstring = lstrip(string);
 	char* finalString = tstrip(lstring);
+	
 	return finalString;
+
 }
 
 #endif /* OCTO_H */
