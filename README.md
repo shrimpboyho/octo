@@ -1,4 +1,4 @@
-octo - tame those C strings
+octo - A String Manipulation Library
 ====
 
 A Library for Manipulating Strings in C
