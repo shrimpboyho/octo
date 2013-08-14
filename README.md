@@ -1,5 +1,5 @@
-octo - A String Manipulation Library
-====
+[octo]() - A String Manipulation Library
+========================================
 
 A Library for Manipulating Strings in C
 
