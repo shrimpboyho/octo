@@ -8,14 +8,14 @@ int len(char* string){
 
 	char *end = string;
 	for(;*end;++end){}
-	return end-string;
+	return (size_t) (end-string);
 
 }
 
 char* lstrip(char* string){
 
 	if(!string) 
-		return;
+		return string;
 
 	/* Trim off leading whitespace */
 	while(isspace(*string)){
