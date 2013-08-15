@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int len(char* string){
+size_t len(char* string){
 
 	char *end = string;
 	for(;*end;++end){}
