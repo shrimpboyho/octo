@@ -30,7 +30,7 @@ char* lstrip(char* string){
 
 }
 
-char* tstrip(char* string){
+char* rstrip(char* string){
 	
 	/* Trim off trailing whitespace */
 	char* end = string + len(string) - 1;
@@ -46,7 +46,7 @@ char* strip(char* string){
 
 	/* Trim off both leading and trailing whitespace */
 	char* lstring = lstrip(string);
-	char* finalString = tstrip(lstring);
+	char* finalString = rstrip(lstring);
 	
 	return finalString;
 
@@ -59,6 +59,16 @@ char* slice(char* s, int start, int end){
 	strncpy(buff, s + start, (end - start) + 1);
 	*(buff + (end - start) + 1) = '\0';
 	return buff;
+}
+
+char* toUpperCase(char* s){
+
+
+}
+
+char* toLowerCase(char* s){
+
+
 }
 
 #endif /* OCTO_H */

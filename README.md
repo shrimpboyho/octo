@@ -36,7 +36,7 @@ char* lstrip(char* thing)
 Trims off only the leading whitespace on ```thing```. It modifies the original buffer.
 
 ```c
-char* tstrip(char* thing)
+char* rstrip(char* thing)
 ```
 	
 Trims off only the trailing whitespace on ```thing```. It modifies the original buffer.
