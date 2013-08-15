@@ -20,5 +20,20 @@ int main( void ){
 	char* testy3 = buffer3;
 	printf("The sliced string: \"%s\"\n", slice(testy3, 1, 4));
 	
+	/* makeCopy() test */
+	char buffer4[60] = "I AM THE walrus.";
+	char* testy4 = buffer4;
+	printf("A copy of the string: \"%s\"\n", makeCopy(testy4));
+
+	/* toUpperCase() test */
+	char buffer5[60] = "I AM THE walrus.";
+	char* testy5 = buffer5;
+	printf("A uppercase version of the string: \"%s\"\n", toUpperCase(testy5));
+
+	/* toLowerCase() test */
+	char buffer6[60] = "I AM THE walrus.";
+	char* testy6 = buffer6;
+	printf("A lowercase version of the string: \"%s\"\n", toLowerCase(testy6));
+
 	return 0;
 }

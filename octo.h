@@ -12,6 +12,13 @@ int len(char* string){
 
 }
 
+char* makeCopy(char* s){
+	
+	char* buff = (char*) malloc(len(s) + 1);
+	strcpy(buff, s);
+	return buff;
+}
+
 char* lstrip(char* string){
 
 	if(!string) 
@@ -58,12 +65,26 @@ char* slice(char* s, int start, int end){
 }
 
 char* toUpperCase(char* s){
+	
+	char* q = makeCopy(s);
+	int i;
+	for(i = 0; i < len(q); i++){
+		*(q + i) = toupper(*(q + i));
+	}
 
+	return q;
 
 }
 
 char* toLowerCase(char* s){
 
+	char* q = makeCopy(s);
+	int i;
+	for(i = 0; i < len(q); i++){
+		*(q + i) = tolower(*(q + i));
+	}
+
+	return q;
 
 }
 
