@@ -24,6 +24,18 @@ Documentation
 -------------
 
 ```c
+size_t len(char* thing)
+```
+	
+Returns the number of characters in ```thing``` excluding the null character.
+
+```c
+char* makeCopy(char* thing)
+```
+	
+Creates a new copy of ```thing``` in the memory and returns a pointer to it.
+
+```c
 char* strip(char* thing)
 ```
 	
