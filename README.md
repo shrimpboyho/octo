@@ -1,6 +1,6 @@
 [octo]() - A String Manipulation Library
-[![Build Status](https://travis-ci.org/shrimpboyho/octo.png)](https://travis-ci.org/shrimpboyho/octo)
 ========================================
+[![Build Status](https://travis-ci.org/shrimpboyho/octo.png)](https://travis-ci.org/shrimpboyho/octo)
 
 A Library for Manipulating Strings in C
 
