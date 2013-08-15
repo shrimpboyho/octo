@@ -6,13 +6,9 @@
 
 int len(char* string){
 
-	int i = 0;
-	while(*string != '\0'){
-		i++;
-		*string++;
-	}
-	
-	return i;
+	char *end = string;
+	for(;*end;++end){}
+	return end-string;
 
 }
 
@@ -22,7 +18,7 @@ char* lstrip(char* string){
 		return;
 
 	/* Trim off leading whitespace */
-	while(*string == ' '){
+	while(isspace(*string)){
 		string++;
 	}
 
@@ -34,7 +30,7 @@ char* rstrip(char* string){
 	
 	/* Trim off trailing whitespace */
 	char* end = string + len(string) - 1;
-        while (end >= string && *end == ' ')
+        while (end >= string && isspace(*end))
                 end--;
         *(end + 1) = '\0';
 	
