@@ -18,7 +18,7 @@ int main( void ){
 	/* slice() test */
 	char buffer3[60] = "STUFFY!";
 	char* testy3 = buffer3;
-	printf("The sliced string: \"%s\"\n", slice(testy3, 0, 1));
+	printf("The sliced string: \"%s\"\n", slice(testy3, 1, 4));
 	
 	return 0;
 }

@@ -55,11 +55,9 @@ char* strip(char* string){
 char* slice(char* s, int start, int end){
 
 	/* Create a new identical buffer */
-	char* buff = (char*) malloc(len(s) + 1);
-	strcpy(buff, s);
-
-	/*TODO: Implement slicing*/
-	
+	char* buff = (char*) malloc((end - start) + 2);
+	strncpy(buff, s + start, (end - start) + 1);
+	*(buff + (end - start) + 1) = '\0';
 	return buff;
 }
 
