@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 size_t len(char* string){
 
@@ -96,6 +97,18 @@ char* intToString(int n){
 	
 	return b;
     
+}
+
+int stringToInt(char* s){
+
+	return atoi(s);
+	
+}
+
+char charAt(char* s, int n){
+	
+	return *(s + n);
+	
 }
 
 #endif /* OCTO_H */
