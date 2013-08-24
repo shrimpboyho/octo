@@ -58,4 +58,21 @@ char* slice(char* thing, int start, int end)
 ```
 	
 Creates a new string from ```thing``` that consists of the characters from the starting index (```start```), to the ending index (```end```), and returns a ```char*``` to it. It does not modify the original buffer.
-	
+
+```c
+char charAt(char* s, int n)
+```
+
+Returns the character in the string ```s``` at the index of ```n```
+
+```c
+int stringToInt(char* s)
+```
+
+Converts ```s``` to an integer and returns it.
+
+```c
+char* intToString(int n)
+```
+
+Converts ```n``` to a string and returns a pointer to it.
