@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "octo.h"
 #include <string.h>
+#include <math.h>
 int main( void ){
 
 	printf("Unit testing has begun\n");
