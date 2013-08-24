@@ -88,4 +88,14 @@ char* toLowerCase(char* s){
 
 }
 
+char* intToString(int n){
+    
+    int c = (int) log10((double)n) + 1;
+    char* b = (char*) malloc(c + 1);
+    sprintf(b,"%d",n);
+    
+    return b;
+    
+}
+
 #endif /* OCTO_H */
