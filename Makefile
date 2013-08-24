@@ -1,3 +1,3 @@
 all:
-	gcc unittests.c -o thing
+	gcc unittests.c -lm -o thing
 	./thing
