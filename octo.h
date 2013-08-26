@@ -20,7 +20,7 @@ char* makeCopy(char* s){
 	return buff;
 }
 
-char* lstrip(char* string){
+void* lstrip(char* string){
 
 	if(!string) 
 		return string;
@@ -34,7 +34,7 @@ char* lstrip(char* string){
 
 }
 
-char* rstrip(char* string){
+void* rstrip(char* string){
 	
 	/* Trim off trailing whitespace */
 	char* end = string + len(string) - 1;
@@ -46,7 +46,7 @@ char* rstrip(char* string){
 
 }
 
-char* strip(char* string){
+void* strip(char* string){
 
 	/* Trim off both leading and trailing whitespace */
 	char* lstring = lstrip(string);

@@ -36,19 +36,19 @@ char* makeCopy(char* thing)
 Creates a new copy of ```thing``` in the memory and returns a pointer to it.
 
 ```c
-char* strip(char* thing)
+void* strip(char* thing)
 ```
 	
 Trims off both leading and trailing whitespace on ```thing```. It modifies the original buffer.
 
 ```c
-char* lstrip(char* thing)
+void* lstrip(char* thing)
 ```
 	
 Trims off only the leading whitespace on ```thing```. It modifies the original buffer.
 
 ```c
-char* rstrip(char* thing)
+void* rstrip(char* thing)
 ```
 	
 Trims off only the trailing whitespace on ```thing```. It modifies the original buffer.
