@@ -24,55 +24,55 @@ Documentation
 -------------
 
 ```c
-size_t len(char* thing)
+size_t len(char* thing);
 ```
 	
 Returns the number of characters in ```thing``` excluding the null character.
 
 ```c
-char* makeCopy(char* thing)
+char* makeCopy(char* thing);
 ```
 	
 Creates a new copy of ```thing``` in the memory and returns a pointer to it.
 
 ```c
-void* strip(char* thing)
+void* strip(char* thing);
 ```
 	
 Trims off both leading and trailing whitespace on ```thing```. It modifies the original buffer.
 
 ```c
-void* lstrip(char* thing)
+void* lstrip(char* thing);
 ```
 	
 Trims off only the leading whitespace on ```thing```. It modifies the original buffer.
 
 ```c
-void* rstrip(char* thing)
+void* rstrip(char* thing);
 ```
 	
 Trims off only the trailing whitespace on ```thing```. It modifies the original buffer.
 
 ```c
-char* slice(char* thing, int start, int end)
+char* slice(char* thing, int start, int end);
 ```
 	
 Creates a new string from ```thing``` that consists of the characters from the starting index (```start```), to the ending index (```end```), and returns a ```char*``` to it. It does not modify the original buffer.
 
 ```c
-char charAt(char* s, int n)
+char charAt(char* s, int n);
 ```
 
 Returns the character in the string ```s``` at the index of ```n```
 
 ```c
-int stringToInt(char* s)
+int stringToInt(char* s);
 ```
 
 Converts ```s``` to an integer and returns it.
 
 ```c
-char* intToString(int n)
+char* intToString(int n);
 ```
 
 Converts ```n``` to a string and returns a pointer to it.
