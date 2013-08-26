@@ -36,5 +36,10 @@ int main( void ){
 	char* testy6 = buffer6;
 	printf("A lowercase version of the string: \"%s\"\n", toLowerCase(testy6));
 
+	/* replaceBetween() test */
+	char buffer7[60] = "The Hello World Code!";
+	char* testy7 = replaceBetween(buffer7,5,8,"jjj");
+	printf("replaceBetween() test: \"%s\"\n",testy7);
+
 	return 0;
 }

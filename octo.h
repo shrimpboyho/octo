@@ -90,7 +90,7 @@ char* toLowerCase(char* s){
 }
 
 char* intToString(int n){
-    
+
 	int c = (int) log10((double)n) + 1;
 	char* b = (char*) malloc(c + 1);
 	sprintf(b,"%d",n);
@@ -109,6 +109,22 @@ char charAt(char* s, int n){
 	
 	return *(s + n);
 	
+}
+
+char* replaceBetween(char* s, int start, int end, char* what){
+
+	char* buffer = malloc(len(s) + len(what));
+	*(buffer) = '\0';	
+	char* part = slice(s, 0, start - 1);
+	strcat(buffer,part);
+	strcat(buffer,what);
+	char* part2 = slice(s, end, len(s) - 1);
+	strcat(buffer, part2);
+	free(part);
+	free(part2);
+
+	return buffer;
+
 }
 
 #endif /* OCTO_H */

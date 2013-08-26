@@ -76,3 +76,22 @@ char* intToString(int n)
 ```
 
 Converts ```n``` to a string and returns a pointer to it.
+
+```c
+char* replaceBetween(char* s, int start, int end, char* ham);
+```
+
+Replaces the content of the string ```s``` between the indexes of ```start``` and ```end``` with the content of the string ```ham```. Returns a pointer to the new buffer.
+
+```c
+char* toUpperCase(char* s);
+```
+
+Creates a new copy of ```s``` in which all the characters are uppercase and returns a pointer to it.
+
+```c
+char* toLowerCase(char* s);
+```
+
+Creates a new copy of ```s``` in which all the characters are lowercase and returns a pointer to it.
+
