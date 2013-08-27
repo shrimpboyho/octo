@@ -36,7 +36,7 @@ char charAt(char* s, int n);
 
 Returns the character in the string ```s``` at the index of ```n```
 
-##Make an identical copy of a string
+###Make an identical copy of a string
 
 ```c
 char* makeCopy(char* thing);
@@ -44,7 +44,7 @@ char* makeCopy(char* thing);
 
 Creates a new copy of ```thing``` in the memory and returns a pointer to it.
 
-##Modify the original string
+###Modify the original string
 
 ```c
 void* strip(char* thing);
@@ -64,7 +64,7 @@ void* rstrip(char* thing);
 	
 Trims off only the trailing whitespace on ```thing```. It modifies the original buffer.
 
-##Create new versions of strings
+###Create new versions of strings
 
 ```c
 char* slice(char* thing, int start, int end);
@@ -90,7 +90,7 @@ char* toLowerCase(char* s);
 Creates a new copy of ```s``` in which all the characters are lowercase and returns a pointer to it.
 
 
-##Convert between strings and other data types
+###Convert between strings and other data types
 
 ```c
 int stringToInt(char* s);
