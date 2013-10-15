@@ -1,0 +1,71 @@
+\href{https://drone.io/github.com/shrimpboyho/octo/latest}{\tt !\mbox{[}Build Status\mbox{]}(https\-://drone.\-io/github.\-com/shrimpboyho/octo/status.\-png)}
+
+A Library for Manipulating Strings in C
+
+\subsection*{How to Install }
+
+First get a copy of the library by git cloning it\-:
+
+```bash git clone \href{https://github.com/shrimpboyho/octo.git}{\tt https\-://github.\-com/shrimpboyho/octo.\-git} cd octo ```
+
+Then you can just include the header file in your code\-:
+
+```c \#include \char`\"{}octo.\-h\char`\"{} ```
+
+\subsection*{Documentation }
+
+\subsubsection*{Get info on a string}
+
+```c size\-\_\-t \hyperlink{octo_8h_a5220546523fb002b2b31820d8e5b7404}{len(char$\ast$ thing)}; ```
+
+Returns the number of characters in {\ttfamily thing} excluding the null character.
+
+```c char \hyperlink{octo_8h_a88a1198280f9085daf3f73f1609b5d97}{char\-At(char$\ast$ s, int n)}; ```
+
+Returns the character in the string {\ttfamily s} at the index of {\ttfamily n}
+
+\subsubsection*{Make an identical copy of a string}
+
+```c char$\ast$ \hyperlink{octo_8h_a2390ef9a15b12afe4e8815bf93682c17}{make\-Copy(char$\ast$ thing)}; ```
+
+Creates a new copy of {\ttfamily thing} in the memory and returns a pointer to it.
+
+\subsubsection*{Modify the original string}
+
+```c void$\ast$ \hyperlink{octo_8h_a9cf4ed9ca7179324cdd708784dcaad7a}{strip(char$\ast$ thing)}; ```
+
+Trims off both leading and trailing whitespace on {\ttfamily thing}. It modifies the original buffer.
+
+```c void$\ast$ \hyperlink{octo_8h_acdb2b9d44474319ee92969e31d46e47b}{lstrip(char$\ast$ thing)}; ```
+
+Trims off only the leading whitespace on {\ttfamily thing}. It modifies the original buffer.
+
+```c void$\ast$ \hyperlink{octo_8h_a7a521e251e997480bbfad3343de8558a}{rstrip(char$\ast$ thing)}; ```
+
+Trims off only the trailing whitespace on {\ttfamily thing}. It modifies the original buffer.
+
+\subsubsection*{Create new versions of strings}
+
+```c char$\ast$ \hyperlink{octo_8h_a9f5e0367cd490b8a7694c882eb8a5412}{slice(char$\ast$ thing, int start, int end)}; ```
+
+Creates a new string from {\ttfamily thing} that consists of the characters from the starting index ({\ttfamily start}), to the ending index ({\ttfamily end}), and returns a {\ttfamily char$\ast$} to it. It does not modify the original buffer. ```c char$\ast$ \hyperlink{octo_8h_a375fc67fed1e24e78ce7ba0ac341712d}{replace\-Between(char$\ast$ s, int start, int end, char$\ast$ ham)}; ```
+
+Replaces the content of the string {\ttfamily s} between the indexes of {\ttfamily start} and {\ttfamily end} with the content of the string {\ttfamily ham}. Returns a pointer to the new buffer.
+
+```c char$\ast$ \hyperlink{octo_8h_a82e815f6c65b56b76b7dba6c3b061151}{to\-Upper\-Case(char$\ast$ s)}; ```
+
+Creates a new copy of {\ttfamily s} in which all the characters are uppercase and returns a pointer to it.
+
+```c char$\ast$ \hyperlink{octo_8h_a948d7e7b08ebec3fb5c31ed7626e1303}{to\-Lower\-Case(char$\ast$ s)}; ```
+
+Creates a new copy of {\ttfamily s} in which all the characters are lowercase and returns a pointer to it.
+
+\subsubsection*{Convert between strings and other data types}
+
+```c int \hyperlink{octo_8h_aa656c45e3197bceb9e0835e38be6fed4}{string\-To\-Int(char$\ast$ s)}; ```
+
+Converts {\ttfamily s} to an integer and returns it.
+
+```c char$\ast$ \hyperlink{octo_8h_a739b75490f8ef84d3bc08735536c873c}{int\-To\-String(int n)}; ```
+
+Converts {\ttfamily n} to a string and returns a pointer to it. 
