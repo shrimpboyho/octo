@@ -1,4 +1,4 @@
-[octo]() - A GNU C Library
+[octo]() - A GCC C Library
 ========================================
 [![Build Status](https://drone.io/github.com/shrimpboyho/octo/status.png)](https://drone.io/github.com/shrimpboyho/octo/latest)
 
