@@ -2,7 +2,7 @@
 ========================================
 [![Build Status](https://drone.io/github.com/shrimpboyho/octo/status.png)](https://drone.io/github.com/shrimpboyho/octo/latest)
 
-A Library for Manipulating Strings in C
+A Library for doing various things in C
 
 How to Install
 --------------
