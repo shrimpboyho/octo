@@ -23,7 +23,7 @@ int main ( void )
     prettyPrint(bank);
 
     /* Dump database contents to json file */
-    dumpDB(bank, "bank.db");
+    dumpDB(bank, "bank.json");
     
     //buildFromString(bank, "{narc:j,jew:k}");
     return 0;

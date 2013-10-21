@@ -40,7 +40,7 @@ void addValue(DB *db, char *idName, char *value)
 /* adds a simple id, doc pair to the database */
 void addDB(DB *db, DB *doc)
 {
-    
+
     /* if the id list contains only one node */
     if (db -> nextID == NULL)
     {
@@ -108,80 +108,27 @@ void buildFromString(DB *db, char *string)
 }
 
 /* pretty print the database */
-void prettyPrint(DB* db)
+void prettyPrint(DB *db)
 {
-	prettyDB(db, 0);
+    prettyDB(db, 0);
 }
 
 /* Dumps db to a json file */
-void dumpDB(DB* db, char* filename)
+void dumpDB(DB *db, char *filename)
 {
+    remove(filename);
     prettyDBToFile(db, filename, 0);
 }
 
 /* internal recursive printing engine */
-void prettyDB(DB* db, int tabs)
+void prettyDB(DB *db, int tabs)
 {
-	/* Set up format string based on tabs*/
-
-	char* formatName = (char*) malloc(sizeof(char) * 20);
-	strcpy(formatName,"\n");
-	int i;
-	for(i = 0; i < tabs; i++)
-	{
-		appendChar(formatName, '\t');
-	}
-	appendChar(formatName, '%');
-	appendChar(formatName, 's');
-	appendChar(formatName, ':');
-	appendChar(formatName, '\n');
-
-	printf(formatName, db -> name);
-
-	ID* currentID = db -> nextID;
-	while(currentID -> nextID != NULL)
-	{
-		if(currentID -> nextDB != NULL)
-		{
-            prettyDB(currentID -> nextDB, tabs + 1);
-			currentID = currentID -> nextID;
-		}
-		else{
-			char* formatStuff = (char*) malloc(sizeof(char) * 20);
-			strcpy(formatStuff,"\n");
-			for(i = 0; i < (tabs + 1); i++)
-			{
-				appendChar(formatStuff, '\t');
-			}
-			appendChar(formatStuff, '%');
-			appendChar(formatStuff, 's');
-			appendChar(formatStuff, ' ');
-			appendChar(formatStuff, ':');
-			appendChar(formatStuff, ' ');
-			appendChar(formatStuff, '%');
-			appendChar(formatStuff, 's');
-			appendChar(formatStuff, '\n');
-			printf(formatStuff, currentID -> idName, currentID -> value);
-			currentID = currentID -> nextID;
-		}
-		
-	}
-}
-
-/* internal recursive printing engine to file */
-void prettyDBToFile(DB* db, char* filename, int tabs)
-{
-    /* Set up file pointer */
-
-    FILE *fp;
-    fp = fopen(filename, "a");
-
     /* Set up format string based on tabs*/
 
-    char* formatName = (char*) malloc(sizeof(char) * 20);
-    strcpy(formatName,"\n");
-    int i;
-    for(i = 0; i < tabs; i++)
+    char *formatName = (char *) malloc(sizeof(char) * 20);
+    strcpy(formatName, "\n");
+    int i; 
+    for (i = 0; i < tabs; i++)
     {
         appendChar(formatName, '\t');
     }
@@ -190,20 +137,22 @@ void prettyDBToFile(DB* db, char* filename, int tabs)
     appendChar(formatName, ':');
     appendChar(formatName, '\n');
 
-    fprintf(fp, formatName, db -> name);
+    printf(formatName, db -> name);
+    free(formatName);
 
-    ID* currentID = db -> nextID;
-    while(currentID -> nextID != NULL)
+    ID *currentID = db -> nextID;
+    while (currentID -> nextID != NULL)
     {
-        if(currentID -> nextDB != NULL)
+        if (currentID -> nextDB != NULL)
         {
-            prettyDBToFile(currentID -> nextDB,filename, tabs + 1);
+            prettyDB(currentID -> nextDB, tabs + 1);
             currentID = currentID -> nextID;
         }
-        else{
-            char* formatStuff = (char*) malloc(sizeof(char) * 20);
-            strcpy(formatStuff,"\n");
-            for(i = 0; i < (tabs + 1); i++)
+        else
+        {
+            char *formatStuff = (char *) malloc(sizeof(char) * 20);
+            strcpy(formatStuff, "\n");
+            for (i = 0; i < (tabs + 1); i++)
             {
                 appendChar(formatStuff, '\t');
             }
@@ -215,9 +164,67 @@ void prettyDBToFile(DB* db, char* filename, int tabs)
             appendChar(formatStuff, '%');
             appendChar(formatStuff, 's');
             appendChar(formatStuff, '\n');
-            fprintf(fp,formatStuff, currentID -> idName, currentID -> value);
+            printf(formatStuff, currentID -> idName, currentID -> value);
+            free(formatStuff);
             currentID = currentID -> nextID;
         }
-        
+
+    }
+}
+
+/* internal recursive printing engine to file */
+void prettyDBToFile(DB *db, char *filename, int tabs)
+{
+    /* Set up file pointer */
+
+    FILE *fp;
+    fp = fopen(filename, "a");
+
+    /* Set up format string based on tabs*/
+
+    char *formatName = (char *) malloc(sizeof(char) * 20);
+    strcpy(formatName, "\n");
+    int i;
+    for (i = 0; i < tabs; i++)
+    {
+        appendChar(formatName, '\t');
+    }
+    appendChar(formatName, '%');
+    appendChar(formatName, 's');
+    appendChar(formatName, ':');
+    appendChar(formatName, '\n');
+
+    fprintf(fp, formatName, db -> name);
+    free(formatName);
+
+    ID *currentID = db -> nextID;
+    while (currentID -> nextID != NULL)
+    {
+        if (currentID -> nextDB != NULL)
+        {
+            prettyDBToFile(currentID -> nextDB, filename, tabs + 1);
+            currentID = currentID -> nextID;
+        }
+        else
+        {
+            char *formatStuff = (char *) malloc(sizeof(char) * 20);
+            strcpy(formatStuff, "\n");
+            for (i = 0; i < (tabs + 1); i++)
+            {
+                appendChar(formatStuff, '\t');
+            }
+            appendChar(formatStuff, '%');
+            appendChar(formatStuff, 's');
+            appendChar(formatStuff, ' ');
+            appendChar(formatStuff, ':');
+            appendChar(formatStuff, ' ');
+            appendChar(formatStuff, '%');
+            appendChar(formatStuff, 's');
+            appendChar(formatStuff, '\n');
+            fprintf(fp, formatStuff, currentID -> idName, currentID -> value);
+            free(formatStuff);
+            currentID = currentID -> nextID;
+        }
+
     }
 }
