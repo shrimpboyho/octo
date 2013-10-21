@@ -117,7 +117,14 @@ void prettyPrint(DB *db)
 void dumpDB(DB *db, char *filename)
 {
     remove(filename);
+    FILE *fp;
+    fp = fopen(filename, "a");
+    fprintf(fp, "{\n");
+    fclose(fp);
     prettyDBToFile(db, filename, 0);
+    fp = fopen(filename, "a");
+    fprintf(fp, "\n}");
+    fclose(fp);
 }
 
 /* internal recursive printing engine */
@@ -189,12 +196,16 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
     {
         appendChar(formatName, '\t');
     }
+    appendChar(formatName, '"');
     appendChar(formatName, '%');
     appendChar(formatName, 's');
+    appendChar(formatName, '"');
     appendChar(formatName, ':');
     appendChar(formatName, '\n');
 
     fprintf(fp, formatName, db -> name);
+    fprintf(fp, "{\n", db -> name);
+    fclose(fp);
     free(formatName);
 
     ID *currentID = db -> nextID;
@@ -213,18 +224,29 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
             {
                 appendChar(formatStuff, '\t');
             }
+            appendChar(formatStuff, '"');
             appendChar(formatStuff, '%');
             appendChar(formatStuff, 's');
+            appendChar(formatStuff, '"');
             appendChar(formatStuff, ' ');
             appendChar(formatStuff, ':');
             appendChar(formatStuff, ' ');
+            appendChar(formatStuff, '"');
             appendChar(formatStuff, '%');
             appendChar(formatStuff, 's');
+            appendChar(formatStuff, '"');
+            if(currentID -> nextID != NULL)
+                appendChar(formatStuff, ',');
             appendChar(formatStuff, '\n');
+            fp = fopen(filename, "a");
             fprintf(fp, formatStuff, currentID -> idName, currentID -> value);
+            fclose(fp);
             free(formatStuff);
             currentID = currentID -> nextID;
         }
 
     }
+    fp = fopen(filename, "a");
+    fprintf(fp, "\n}");
+    fclose(fp);
 }
