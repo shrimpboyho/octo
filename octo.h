@@ -127,4 +127,11 @@ char* replaceBetween(char* s, int start, int end, char* what){
 
 }
 
+void appendChar(char* s, char c)
+{
+    int len = strlen(s);
+    s[len] = c;
+    s[len+1] = '\0';
+}
+
 #endif /* OCTO_H */

@@ -5,9 +5,23 @@
 int main ( void )
 {
 
-	DB* bank = newDB("junk");
-	printf("Name of db is: %s",bank -> name);
-	addPair(bank,'stuff','narc');
-	printf("\nSize of db is: %d",getIDListLength(bank -> nextID));
-	return 0;
+    /* Create a database */
+    DB *bank = newDB("Employees");
+    printf("Name of db is: %s", bank -> name);
+    addValue(bank, "Daniel", "Programmer");
+    addValue(bank, "Kevin", "Hardware");
+    
+    /* Create another database*/
+    DB *money = newDB("Money");
+    addValue(money, "Monday", "5");
+    addValue(money, "Tuesday", "7");
+
+    /* Shove the money database in the bank */
+    addDB(bank,money);
+
+    /* Pretty print the entire database*/
+    prettyPrint(bank);
+    
+    //buildFromString(bank, "{narc:j,jew:k}");
+    return 0;
 }
