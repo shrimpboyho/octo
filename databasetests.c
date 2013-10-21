@@ -21,6 +21,9 @@ int main ( void )
 
     /* Pretty print the entire database*/
     prettyPrint(bank);
+
+    /* Dump database contents to json file */
+    dumpDB(bank, "bank.db");
     
     //buildFromString(bank, "{narc:j,jew:k}");
     return 0;

@@ -113,6 +113,18 @@ void prettyPrint(DB* db)
 	prettyDB(db, 0);
 }
 
+/* Dumps db to a json file */
+void dumpDB(DB* db, char* filename)
+{
+    FILE *fp;
+    fp = fopen(filename, "w");
+    fprintf(fp, "{");
+    prettyDBToFile(db, filename, 0);
+    fprintf(fp, "}");
+    fclose(fp);
+}
+
+/* internal recursive printing engine */
 void prettyDB(DB* db, int tabs)
 {
 	/* Set up format string based on tabs*/
@@ -159,4 +171,59 @@ void prettyDB(DB* db, int tabs)
 		}
 		
 	}
+}
+
+/* internal recursive printing engine to file */
+void prettyDBToFile(DB* db, char* filename, int tabs)
+{
+    /* Set up file pointer */
+
+    FILE *fp;
+    fp = fopen(filename, "w");
+
+    /* Set up format string based on tabs*/
+
+    char* formatName = (char*) malloc(sizeof(char) * 20);
+    strcpy(formatName,"\n");
+    int i;
+    for(i = 0; i < tabs; i++)
+    {
+        appendChar(formatName, '\t');
+    }
+    appendChar(formatName, '%');
+    appendChar(formatName, 's');
+    appendChar(formatName, ':');
+    appendChar(formatName, '\n');
+
+    fprintf(fp, formatName, db -> name);
+
+    ID* currentID = db -> nextID;
+    while(currentID -> nextID != NULL)
+    {
+        if(currentID -> nextDB != NULL)
+        {
+            prettyDBToFile(currentID -> nextDB,filename, tabs + 1);
+            currentID = currentID -> nextID;
+        }
+        else{
+            char* formatStuff = (char*) malloc(sizeof(char) * 20);
+            strcpy(formatStuff,"\n");
+            for(i = 0; i < (tabs + 1); i++)
+            {
+                appendChar(formatStuff, '\t');
+            }
+            appendChar(formatStuff, '%');
+            appendChar(formatStuff, 's');
+            appendChar(formatStuff, ' ');
+            appendChar(formatStuff, ':');
+            appendChar(formatStuff, ' ');
+            appendChar(formatStuff, '%');
+            appendChar(formatStuff, 's');
+            appendChar(formatStuff, '\n');
+            fprintf(fp,formatStuff, currentID -> idName, currentID -> value);
+            currentID = currentID -> nextID;
+        }
+        
+    }
+    fclose(fp);
 }
