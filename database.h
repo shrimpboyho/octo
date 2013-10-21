@@ -116,12 +116,7 @@ void prettyPrint(DB* db)
 /* Dumps db to a json file */
 void dumpDB(DB* db, char* filename)
 {
-    FILE *fp;
-    fp = fopen(filename, "w");
-    fprintf(fp, "{");
     prettyDBToFile(db, filename, 0);
-    fprintf(fp, "}");
-    fclose(fp);
 }
 
 /* internal recursive printing engine */
@@ -148,7 +143,7 @@ void prettyDB(DB* db, int tabs)
 	{
 		if(currentID -> nextDB != NULL)
 		{
-			prettyDB(currentID -> nextDB, tabs + 1);
+            prettyDB(currentID -> nextDB, tabs + 1);
 			currentID = currentID -> nextID;
 		}
 		else{
@@ -179,7 +174,7 @@ void prettyDBToFile(DB* db, char* filename, int tabs)
     /* Set up file pointer */
 
     FILE *fp;
-    fp = fopen(filename, "w");
+    fp = fopen(filename, "a");
 
     /* Set up format string based on tabs*/
 
@@ -225,5 +220,4 @@ void prettyDBToFile(DB* db, char* filename, int tabs)
         }
         
     }
-    fclose(fp);
 }
