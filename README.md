@@ -2,7 +2,7 @@
 ========================================
 [![Build Status](https://drone.io/github.com/shrimpboyho/octo/status.png)](https://drone.io/github.com/shrimpboyho/octo/latest)
 
-A Library for doing various things in C
+A library for doing various things in C
 
 How to Install
 --------------
@@ -20,8 +20,8 @@ Then you can just include the header file in your code:
 #include "octo.h"
 ```
 
-Documentation
--------------
+Documentation Regarding Strings
+-------------------------------
 ###Get info on a string
 
 ```c
@@ -103,3 +103,7 @@ char* intToString(int n);
 ```
 
 Converts ```n``` to a string and returns a pointer to it.
+
+Documentation Regarding The JSON Database
+-----------------------------------------
+TODO
