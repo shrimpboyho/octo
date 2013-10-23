@@ -121,9 +121,9 @@ void dumpDB(DB *db, char *filename)
     fp = fopen(filename, "a");
     fprintf(fp, "{\n");
     fclose(fp);
-    prettyDBToFile(db, filename, 0);
+    prettyDBToFile(db, filename, 1);
     fp = fopen(filename, "a");
-    fprintf(fp, "\n}");
+    fprintf(fp, "\n\n}");
     fclose(fp);
 }
 
@@ -201,10 +201,10 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
     appendChar(formatName, 's');
     appendChar(formatName, '"');
     appendChar(formatName, ':');
+    appendChar(formatName, ' ');
+    appendChar(formatName, '{');
     appendChar(formatName, '\n');
-
     fprintf(fp, formatName, db -> name);
-    fprintf(fp, "{\n", db -> name);
     fclose(fp);
     free(formatName);
 
@@ -247,6 +247,14 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
 
     }
     fp = fopen(filename, "a");
-    fprintf(fp, "\n}");
+    char *formatStuff = (char *) malloc(sizeof(char) * 20);
+    strcpy(formatStuff, "\n");
+    for (i = 0; i < (tabs); i++)
+    {
+        appendChar(formatStuff, '\t');
+    }
+    appendChar(formatStuff, '}');
+    fprintf(fp, formatStuff);
+    free(formatStuff);
     fclose(fp);
 }
