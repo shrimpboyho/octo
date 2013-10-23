@@ -133,6 +133,9 @@ int main ( void )
     /* Pretty print the entire database*/
     prettyPrint(bank);
     
+    /* Dump database contents to json file */
+    dumpDB(bank, "bank.json");
+    
     return 0;
 }
 ```
