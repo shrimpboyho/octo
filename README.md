@@ -119,23 +119,89 @@ int main ( void )
     /* Create a database */
     DB *bank = newDB("Employees");
     printf("Name of db is: %s", bank -> name);
-    addValue(bank, "Daniel", "Programmer");
-    addValue(bank, "Kevin", "Hardware");
+    addValue(bank, "Daniel", "Programmer", STRING_TYPE);
+    addValue(bank, "Kevin", "Hardware", STRING_TYPE);
     
     /* Create another database*/
     DB *money = newDB("Money");
-    addValue(money, "Monday", "5");
-    addValue(money, "Tuesday", "7");
+    addValue(money, "Monday", "5", NUM_TYPE);
+    addValue(money, "Tuesday", "7", NUM_TYPE);
 
     /* Shove the money database in the bank */
     addDB(bank,money);
 
     /* Pretty print the entire database*/
     prettyPrint(bank);
-    
+
     /* Dump database contents to json file */
     dumpDB(bank, "bank.json");
     
     return 0;
 }
+```
+
+```octo``` currently has very limited JSON database support and functionality. For now, one can dump JSON contents to a file after building the file via the API.
+
+####Simple Database Creation
+
+Creating a database is simple and can be done by invoking the following function:
+
+```c
+/* Create an empty database */
+DB *bank = newDB("Employees");
+```
+
+The JSON document is represented as such:
+
+```JSON
+{
+    "Employees" : {
+    
+    }
+}
+```
+
+From here one can access the JSON document name:
+
+```c
+char *dbname = bank -> name;
+printf("Name of db is: %s", dbname);
+
+/** OUTPUT:
+*	Name of db is: Employees
+*/
+```
+
+####Adding Data To A Database
+
+Adding a simple key value pair can be done by calling the following function:
+
+```c
+DB *money = newDB("Money");
+addValue(money, "Monday", "5", NUM_TYPE);
+```
+The above code adds the value of ```5``` with the key of ```"Monday"``` to the database known as ```money```. Notice the fourth argument is a constant that specifies that the value of ```5``` is to be interpretted as a number rather than a string.
+
+There are several type constants:
+
+```c
+NUM_TYPE /* For all types of numbers, decimal and floating point */
+STRING_TYPE /* For strings */
+BOOL_TYPE /* For true and false booleans */
+ARRAY_TYPE /* For array types */
+```
+
+####Adding JSON inside of JSON
+
+This is as simple as adding a database to another database. The ```addDB()``` function takes two arguments: the destination database and the source database.
+
+```c
+/* Create a database */
+DB *bank = newDB("Employees");
+
+/* Create another database*/
+DB *money = newDB("Money");
+
+/* Shove the money database in the bank database */
+addDB(bank,money);
 ```
