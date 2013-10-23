@@ -13,7 +13,7 @@ DB *newDB(char *name)
 }
 
 /* adds a simple id, value pair to the database */
-void addValue(DB *db, char *idName, char *value)
+void addValue(DB *db, char *idName, char *value, char *type)
 {
 
     /* if the id list contains only one node */
@@ -21,6 +21,7 @@ void addValue(DB *db, char *idName, char *value)
     {
         db -> nextID -> idName = idName;
         db -> nextID -> value = value;
+        db -> nextID -> type = type;
         db -> nextID -> nextDB = NULL;
         /* append another id */
         appendIDs(db -> nextID, 1);
@@ -30,6 +31,7 @@ void addValue(DB *db, char *idName, char *value)
         int index = getIDListLength(db -> nextID) - 1;
         getID(db -> nextID, index) -> idName = idName;
         getID(db -> nextID, index) -> value = value;
+        getID(db -> nextID, index) -> type = type;
         getID(db -> nextID, index) -> nextDB = NULL;
         /* append another id */
         appendIDs(db -> nextID, 1);
@@ -231,10 +233,12 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
             appendChar(formatStuff, ' ');
             appendChar(formatStuff, ':');
             appendChar(formatStuff, ' ');
-            appendChar(formatStuff, '"');
+            if(currentID -> type == STRING_TYPE)
+                appendChar(formatStuff, '"');
             appendChar(formatStuff, '%');
             appendChar(formatStuff, 's');
-            appendChar(formatStuff, '"');
+            if(currentID -> type == STRING_TYPE)
+                appendChar(formatStuff, '"');
             if(currentID -> nextID != NULL)
                 appendChar(formatStuff, ',');
             appendChar(formatStuff, '\n');
