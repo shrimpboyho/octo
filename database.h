@@ -239,7 +239,7 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
             appendChar(formatStuff, 's');
             if(currentID -> type == STRING_TYPE)
                 appendChar(formatStuff, '"');
-            if(currentID -> nextID != NULL)
+            if(currentID -> nextID -> nextID != NULL)
                 appendChar(formatStuff, ',');
             appendChar(formatStuff, '\n');
             fp = fopen(filename, "a");

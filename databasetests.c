@@ -19,6 +19,8 @@ int main ( void )
     /* Shove the money database in the bank */
     addDB(bank,money);
 
+    addValue(bank, "Lark", "Whack", STRING_TYPE);
+
     /* Pretty print the entire database*/
     prettyPrint(bank);
 
