@@ -258,6 +258,8 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
         appendChar(formatStuff, '\t');
     }
     appendChar(formatStuff, '}');
+    if(tabs > 1)
+        appendChar(formatStuff,',');
     fprintf(fp, formatStuff);
     free(formatStuff);
     fclose(fp);
