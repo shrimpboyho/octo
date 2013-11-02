@@ -16,9 +16,9 @@
 typedef struct id
 {
 
-    char *idName; /* Holds the name of the id */
+    const char *idName; /* Holds the name of the id */
     char *value; /* Holds value associated to id name */
-    char *type; /* Holds the type of the value */
+    const char *type; /* Holds the type of the value */
 
     int pos; /* Index of id */
     struct id *nextID; /* Pointer to next id */
