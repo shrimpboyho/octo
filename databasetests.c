@@ -21,6 +21,9 @@ int main ( void )
 
     addValue(bank, "Lark", "Whack", STRING_TYPE);
 
+    /* Delete a certain id, value pair */
+    deleteByID(bank, "Kevin");
+
     /* Pretty print the entire database*/
     prettyPrint(bank);
 
