@@ -9,6 +9,7 @@ int main ( void )
     DB *bank = newDB("Employees");
     printf("Name of db is: %s", bank -> name);
     addValue(bank, "Daniel", "Programmer", STRING_TYPE);
+    addValue(bank, "Nash", "Whack", STRING_TYPE);
     addValue(bank, "Kevin", "Hardware", STRING_TYPE);
     
     /* Create another database*/
@@ -21,8 +22,8 @@ int main ( void )
 
     addValue(bank, "Lark", "Whack", STRING_TYPE);
 
-    /* Delete a certain id, value pair */
-    deleteByID(bank, "Kevin");
+    /* Delete a certain value by id */
+    deleteByID(bank, "Nash");
 
     /* Pretty print the entire database*/
     prettyPrint(bank);

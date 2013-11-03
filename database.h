@@ -266,6 +266,7 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
 }
 
 /* scans through the database and deletes a node based on id */
+/* TODO: Ensure that there are no memory leaks */
 void deleteByID(DB *db, const char* id)
 {
 
@@ -274,8 +275,10 @@ void deleteByID(DB *db, const char* id)
     ID* currentID = db -> nextID;
     while(currentID != NULL)
     {
-        if(strcmp(id, currentID -> idName))
+        if(strcmp(currentID -> idName, id) == 0){
             break;
+        }
+        currentID = currentID -> nextID;
         index++;
     }
     deleteID(db -> nextID, index);
