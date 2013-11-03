@@ -136,7 +136,7 @@ void prettyDB(DB *db, int tabs)
 
     char *formatName = (char *) malloc(sizeof(char) * 20);
     strcpy(formatName, "\n");
-    int i; 
+    int i;
     for (i = 0; i < tabs; i++)
     {
         appendChar(formatName, '\t');
@@ -237,9 +237,9 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
                 appendChar(formatStuff, '"');
             appendChar(formatStuff, '%');
             appendChar(formatStuff, 's');
-            if(currentID -> type == STRING_TYPE)
+            if (currentID -> type == STRING_TYPE)
                 appendChar(formatStuff, '"');
-            if(currentID -> nextID -> nextID != NULL)
+            if (currentID -> nextID -> nextID != NULL)
                 appendChar(formatStuff, ',');
             appendChar(formatStuff, '\n');
             fp = fopen(filename, "a");
@@ -258,8 +258,8 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
         appendChar(formatStuff, '\t');
     }
     appendChar(formatStuff, '}');
-    if(tabs > 1)
-        appendChar(formatStuff,',');
+    if (tabs > 1)
+        appendChar(formatStuff, ',');
     fprintf(fp, formatStuff);
     free(formatStuff);
     fclose(fp);
@@ -267,15 +267,16 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
 
 /* scans through the database and deletes a node based on id */
 /* TODO: Ensure that there are no memory leaks */
-void deleteByID(DB *db, const char* id)
+void deleteByID(DB *db, const char *id)
 {
 
     int index = 0;
     int cmp;
-    ID* currentID = db -> nextID;
-    while(currentID != NULL)
+    ID *currentID = db -> nextID;
+    while (currentID != NULL)
     {
-        if(strcmp(currentID -> idName, id) == 0){
+        if (strcmp(currentID -> idName, id) == 0)
+        {
             break;
         }
         currentID = currentID -> nextID;

@@ -54,6 +54,9 @@ ID *deleteID(ID *start, int index);
 /* Appends more ids to the end of the list */
 ID *appendIDs(ID *start, int num);
 
+/* Does a safe free() of a single ID as to prevent memory leaks */
+void freeID(ID *t);
+
 ID *generateID()
 {
     ID *newone = (ID *) malloc(sizeof(ID));
@@ -137,6 +140,11 @@ ID *deleteID(ID *start, int index)
         free(r);
         return start;
     }
+}
+
+void freeID(ID *t)
+{
+    
 }
 
 #endif /* NODES_H */
