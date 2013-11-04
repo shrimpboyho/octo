@@ -6,10 +6,10 @@
 
 /* Constant defintions */
 
-#define NUM_TYPE "NUM"
-#define STRING_TYPE "STRING"
-#define ARRAY_TYPE "ARRAY"
-#define BOOL_TYPE "BOOL"
+#define NUM_TYPE 1
+#define STRING_TYPE 2
+#define ARRAY_TYPE 3
+#define BOOL_TYPE 4
 
 /* ID STRUCTURE */
 
@@ -18,7 +18,7 @@ typedef struct id
 
     const char *idName; /* Holds the name of the id */
     char *value; /* Holds value associated to id name */
-    const char *type; /* Holds the type of the value */
+    int type; /* Holds the type of the value */
 
     int pos; /* Index of id */
     struct id *nextID; /* Pointer to next id */
@@ -123,13 +123,13 @@ ID *deleteID(ID *start, int index)
         ID *l = getID(start, index + 1);
         ID *d = getID(start, index);
         f -> nextID = l;
-        free(d);
+        freeID(d);
         return start;
     }
     if (index == 0)
     {
         ID *up = start -> nextID;
-        free(start);
+        freeID(start);
         return up;
     }
     if (index + 1 == getIDListLength(start))
@@ -137,14 +137,15 @@ ID *deleteID(ID *start, int index)
         ID *r = getID(start, index);
         ID *c = getID(start, index - 1);
         c -> nextID = NULL;
-        free(r);
+        freeID(r);
         return start;
     }
 }
 
 void freeID(ID *t)
 {
-    
+    free(t -> value);
+    free(t);
 }
 
 #endif /* NODES_H */

@@ -1,8 +1,6 @@
 #include "nodes.h"
 #include "octo.h"
 
-
-
 /* generates new database and returns it */
 DB *newDB(char *name)
 {
@@ -13,8 +11,11 @@ DB *newDB(char *name)
 }
 
 /* adds a simple id, value pair to the database */
-void addValue(DB *db, char *idName, char *value, char *type)
+void addValue(DB *db, char *idName, char *value, int type)
 {
+
+    /* create a copy of the value for the purposes of this library */
+    value = makeCopy(value);
 
     /* if the id list contains only one node */
     if (db -> nextID == NULL)
