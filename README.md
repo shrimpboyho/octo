@@ -140,7 +140,7 @@ int main ( void )
 }
 ```
 
-```octo``` currently has very limited JSON database support and functionality. For now, one can dump JSON contents to a file after building the file via the API.
+```octo``` currently has very limited JSON database support and functionality. For now, one can dump JSON contents to a file after building the file via the API. Note that within ```octo``` the term ```DB``` (database) is synonymous with the term ```JSON Document```
 
 ####Simple Database Creation
 
@@ -180,9 +180,9 @@ Adding a simple key value pair can be done by calling the following function:
 DB *money = newDB("Money");
 addValue(money, "Monday", "5", NUM_TYPE);
 ```
-The above code adds the value of ```5``` with the key of ```"Monday"``` to the database known as ```money```. Notice the fourth argument is a constant that specifies that the value of ```5``` is to be interpretted as a number rather than a string.
+The above code adds the value of ```5``` with the key of ```"Monday"``` to the database known as ```money```. Notice the fourth argument is a constant that specifies that the value of ```5``` is to be interpretted as a number rather than as a string.
 
-There are several type constants:
+There are several type constants you can use as arguments to the ```addValue()``` function:
 
 ```c
 NUM_TYPE /* For all types of numbers, decimal and floating point */
@@ -203,5 +203,19 @@ DB *bank = newDB("Employees");
 DB *money = newDB("Money");
 
 /* Shove the money database in the bank database */
-addDB(bank,money);
+addDB(bank, money);
+```
+
+####Deleting Stuff
+
+Anything within a database can be deleted if you know the key. The following code shows how the value associated with the key of ```Nash``` can be deleted from the database.
+
+```c
+deleteByID(bank, "Nash");
+```
+
+Note that you can also delete an entire database within a database in the same manner. For example, the following code removes the database known as ```Money```:
+
+```c
+deleteByID(bank, "Money");
 ```
