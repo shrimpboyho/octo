@@ -234,7 +234,7 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
             appendChar(formatStuff, ' ');
             appendChar(formatStuff, ':');
             appendChar(formatStuff, ' ');
-            if(currentID -> type == STRING_TYPE)
+            if (currentID -> type == STRING_TYPE)
                 appendChar(formatStuff, '"');
             appendChar(formatStuff, '%');
             appendChar(formatStuff, 's');

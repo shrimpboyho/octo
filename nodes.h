@@ -22,7 +22,7 @@ typedef struct id
 
     int pos; /* Index of id */
     struct id *nextID; /* Pointer to next id */
-    struct doc *nextDB; /* Pointer to next doc */
+    struct db *nextDB; /* Pointer to next db */
 
 } ID;
 
@@ -56,6 +56,9 @@ ID *appendIDs(ID *start, int num);
 
 /* Does a safe free() of a single ID as to prevent memory leaks */
 void freeID(ID *t);
+
+/* Does a safe free() of a single DB as to prevent memory leaks */
+void freeDB(DB *t);
 
 ID *generateID()
 {
@@ -145,7 +148,21 @@ ID *deleteID(ID *start, int index)
 void freeID(ID *t)
 {
     free(t -> value);
+    if (t -> nextDB)
+        freeDB(t -> nextDB);
     free(t);
+}
+
+void freeDB(DB *t)
+{
+    ID *f = t -> nextID;
+    ID *tmp;
+    while (f != NULL)
+    {
+        tmp = f;
+        f = f -> nextID;
+        freeID(tmp);
+    }
 }
 
 #endif /* NODES_H */
