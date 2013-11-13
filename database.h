@@ -1,6 +1,9 @@
 #include "nodes.h"
 #include "octo.h"
 
+/* memory usage definition (used in malloc()) */
+#define DEPTH 20
+
 /* generates new database and returns it */
 DB *newDB(char *name)
 {
@@ -135,7 +138,7 @@ void prettyDB(DB *db, int tabs)
 {
     /* Set up format string based on tabs*/
 
-    char *formatName = (char *) malloc(sizeof(char) * 20);
+    char *formatName = (char *) malloc(sizeof(char) * DEPTH);
     strcpy(formatName, "\n");
     int i;
     for (i = 0; i < tabs; i++)
@@ -160,7 +163,7 @@ void prettyDB(DB *db, int tabs)
         }
         else
         {
-            char *formatStuff = (char *) malloc(sizeof(char) * 20);
+            char *formatStuff = (char *) malloc(sizeof(char) * DEPTH);
             strcpy(formatStuff, "\n");
             for (i = 0; i < (tabs + 1); i++)
             {
@@ -190,9 +193,9 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
     FILE *fp;
     fp = fopen(filename, "a");
 
-    /* Set up format string based on tabs*/
+    /* Set up format string based on tabs */
 
-    char *formatName = (char *) malloc(sizeof(char) * 20);
+    char *formatName = (char *) malloc(sizeof(char) * DEPTH);
     strcpy(formatName, "\n");
     int i;
     for (i = 0; i < tabs; i++)
@@ -221,7 +224,7 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
         }
         else
         {
-            char *formatStuff = (char *) malloc(sizeof(char) * 20);
+            char *formatStuff = (char *) malloc(sizeof(char) * DEPTH);
             strcpy(formatStuff, "\n");
             for (i = 0; i < (tabs + 1); i++)
             {
@@ -252,7 +255,7 @@ void prettyDBToFile(DB *db, char *filename, int tabs)
 
     }
     fp = fopen(filename, "a");
-    char *formatStuff = (char *) malloc(sizeof(char) * 20);
+    char *formatStuff = (char *) malloc(sizeof(char) * DEPTH);
     strcpy(formatStuff, "\n");
     for (i = 0; i < (tabs); i++)
     {

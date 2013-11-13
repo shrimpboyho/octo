@@ -113,6 +113,9 @@ The following code shows how the database API basically works.
 #include <stdlib.h>
 #include <stdio.h>
 
+/* Define how greedy you want octo to be with memory */
+#define DEPTH 20
+
 int main ( void )
 {
 
@@ -141,6 +144,16 @@ int main ( void )
 ```
 
 ```octo``` currently has very limited JSON database support and functionality. For now, one can dump JSON contents to a file after building the file via the API. Note that within ```octo``` the term ```DB``` (database) is synonymous with the term ```JSON Document```
+
+####A Word on Memory
+
+```octo``` uses ```malloc()``` and ```free()``` to create foramt strings of variable size, for the purposes of printing in a nice formatted manner. The reason we do this is so that JSON within JSON can be properly tabulated. This means that we must build up a format string with a lot of tabs depending on how much depth a JSON file has.
+
+There is one constant known as ```DEPTH``` which is a number. By default it is 20 bytes. It is recommended that ```DEPTH``` be at least 20 bytes. However, one can redefine it to be bigger.
+
+```c
+#define DEPTH 2323
+```
 
 ####Simple Database Creation
 

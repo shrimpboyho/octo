@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define DEPTH 20
+
 int main ( void )
 {
 
