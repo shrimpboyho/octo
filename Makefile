@@ -3,5 +3,5 @@ all:
 	./thing
 	gcc databasetests.c -lm -o thing
 	./thing
-	g++ packer/main.cpp -o packer
-	./packer bin/octo.h nodes.h octo.h database.h
+	g++ packer/main.cpp -o packerrun
+	./packerrun bin/octo.h nodes.h octo.h database.h
