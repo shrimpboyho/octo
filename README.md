@@ -67,10 +67,10 @@ Trims off only the trailing whitespace on ```thing```. It modifies the original 
 ###Create new versions of strings
 
 ```c
-char* slice(char* thing, int start, int end);
+char* slice(char* thing, int start, int end, int BYTES);
 ```
 	
-Creates a new string from ```thing``` that consists of the characters from the starting index (```start```), to the ending index (```end```), and returns a ```char*``` to it. It does not modify the original buffer.
+Creates a new string from ```thing``` that consists of the characters from the starting index (```start```), to the ending index (```end```), and returns a ```char*``` to it. It does not modify the original buffer. The argument ```BYTES``` is usually zero if you want the returned string to perfectly fit in the buffer. If you plan on modifying the string after you get it from this function, it is best to set ```BYTES``` to some other value, such as 30, giving you 30 bytes of additional padding.
 ```c
 char* replaceBetween(char* s, int start, int end, char* ham);
 ```

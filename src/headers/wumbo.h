@@ -163,6 +163,7 @@ double parseNum(char *a, int radix)
 {
     double d;
     sscanf(a, "+%lf", &d);
+    printf("\nConverted string %s to double %lf", a, d);
     return d;
 }
 
@@ -170,6 +171,7 @@ char* doubleToString(double thing)
 {
     char* str = (char*) malloc(sizeof(char) * 30);
     sprintf(str, "%lf", thing);
+    printf("\nConverted double %lf to string %s", thing, str);
     return str;
 }
 
@@ -336,7 +338,7 @@ char* parseNoParen(char* expressionWithSpaces)
             }
             printf("\nFound an explicitly signed number.");
             NODE* newone = appendNode(tokens);
-            newone -> tokenValue = slice(expression, i, k - 1);
+            newone -> tokenValue = slice(expression, i, k - 1, 100);
             newone -> tokenType = NUM;
             i = k - 1;
             continue;
@@ -353,7 +355,7 @@ char* parseNoParen(char* expressionWithSpaces)
             printf("\nFound a generic positive number.");
             NODE* newone = appendNode(tokens);
             char* buffer = malloc(sizeof(char) * 100);
-            sprintf(buffer, "%s%s", "+", slice(expression, i, k));
+            sprintf(buffer, "%s%s", "+", slice(expression, i, k, 100));
             newone -> tokenValue = buffer;
             newone -> tokenType = NUM;
             i = k - 1;
@@ -379,6 +381,7 @@ char* parseNoParen(char* expressionWithSpaces)
     // exponents
     for (i = 0; i < getNodeListLength(tokens); i++)
     {
+        if(getNode(tokens, i + 1))
         if (getNode(tokens, i) -> tokenType == EXP && getNode(tokens, i + 1) -> tokenType == NUM && getNode(tokens, i - 1) -> tokenType == NUM)
         {
             printf("\nExponentiating %s and %s", getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
@@ -386,7 +389,7 @@ char* parseNoParen(char* expressionWithSpaces)
             getNode(tokens, i - 1) -> tokenType = NUM;
             deleteNode(tokens, i);
             deleteNode(tokens, i);
-            printf("\nSolution: %s", getNode(tokens, i) -> tokenValue);
+            printf("\nSolution: %s", getNode(tokens, i - 1) -> tokenValue);
             i = -1;
             continue;
         }
@@ -404,6 +407,7 @@ char* parseNoParen(char* expressionWithSpaces)
                 getNode(tokens, i - 1) -> tokenType = NUM;
                 deleteNode(tokens, i);
                 deleteNode(tokens, i);
+                printf("\nSolution: %s", getNode(tokens, i - 1) -> tokenValue);
                 i = -1;
                 continue;
             }
@@ -414,6 +418,7 @@ char* parseNoParen(char* expressionWithSpaces)
                 getNode(tokens, i - 1) -> tokenType = NUM;
                 deleteNode(tokens, i);
                 deleteNode(tokens, i);
+                printf("\nSolution: %s", getNode(tokens, i - 1) -> tokenValue);
                 i = -1;
                 continue;
             }
@@ -429,11 +434,14 @@ char* parseNoParen(char* expressionWithSpaces)
             getNode(tokens, i) -> tokenValue = wum_add(getNode(tokens, i) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
             getNode(tokens, i) -> tokenType = NUM;
             deleteNode(tokens, i + 1);
+            printf("\nSolution: %s", getNode(tokens, i - 1) -> tokenValue);
             i = -1;
             continue;
         }
     }
     // assemble IR back to string
+
+    printf("\nConverting internal representation into a string.");
 
     for (i = 0; i < getNodeListLength(tokens); i++)
     {
@@ -476,9 +484,9 @@ char* WUMBO_parse(char* expression)
                 break;
             }
         }
-        char* subsec = slice(expression, startPoint, endPoint + 1); // the sub expression with the parenthesis (2 + 3)
+        char* subsec = slice(expression, startPoint, endPoint + 1, 0); // the sub expression with the parenthesis (2 + 3)
         printf("\nSubsection: %s", subsec);
-        char* subsecnoparen = slice(expression, startPoint + 1, endPoint - 1);// strip away parenthesis
+        char* subsecnoparen = slice(expression, startPoint + 1, endPoint - 1, 0);// strip away parenthesis
         free(subsec);
         printf("\nSubsection after stripping parenthesis: %s", subsecnoparen);
         char* subsecsim = parseNoParen(subsecnoparen);
