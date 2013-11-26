@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "wumbo.h"
+#include "../headers/wumbo.h"
 
 int main( void ){
 

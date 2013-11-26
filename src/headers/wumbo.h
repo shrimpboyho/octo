@@ -52,7 +52,10 @@ NODE* deleteNode(NODE* start, int index);
  
 NODE* generateNode()
 {
-    return (NODE*) malloc(sizeof(NODE));
+    NODE* newone = (NODE*) malloc(sizeof(NODE));
+    newone -> pos = 0;
+    newone -> next = NULL;
+    return newone;
 }
  
 NODE* generateNodes(int num)
@@ -283,7 +286,9 @@ char* parseNoParen(char* expressionWithSpaces)
         }
     }
 
-    // Single pass lexer
+    printf("\nAfter Preproccessor: %s", expression);
+
+    /* Single pass lexer */
 
     NODE* tokens = generateNode();
 
@@ -294,6 +299,7 @@ char* parseNoParen(char* expressionWithSpaces)
         // multiply sign
         if (charAt(expression, i) == '*')
         {
+            printf("\nFound a multiplication sign.");
             NODE* newone = appendNode(tokens);
             newone -> tokenValue = "*";
             newone -> tokenType = MUL;
@@ -303,6 +309,7 @@ char* parseNoParen(char* expressionWithSpaces)
         // divide sign
         if (charAt(expression, i) == '/')
         {
+            printf("\nFound a division sign.");
             NODE* newone = appendNode(tokens);
             newone -> tokenValue = "/";
             newone -> tokenType = DIV;
@@ -312,6 +319,7 @@ char* parseNoParen(char* expressionWithSpaces)
         // exponent sign
         if (charAt(expression, i) == '^')
         {
+            printf("\nFound an exponentiation sign.");
             NODE* newone = appendNode(tokens);
             newone -> tokenValue = "^";
             newone -> tokenType = EXP;
@@ -324,12 +332,11 @@ char* parseNoParen(char* expressionWithSpaces)
             for (k = i + 1; k < len(expression); k++)
             {
                 if (charAt(expression,k) == '+' || charAt(expression,k) == '-' || charAt(expression,k) == '*' || charAt(expression,k) == '/' || charAt(expression,k) == '^')
-                {
                     break;
-                }
             }
+            printf("\nFound an explicitly signed number.");
             NODE* newone = appendNode(tokens);
-            newone -> tokenValue = slice(expression, i, k);
+            newone -> tokenValue = slice(expression, i, k - 1);
             newone -> tokenType = NUM;
             i = k - 1;
             continue;
@@ -341,10 +348,9 @@ char* parseNoParen(char* expressionWithSpaces)
             for (k = i + 1; k < len(expression); k++)
             {
                 if (charAt(expression,k) == '+' || charAt(expression,k) == '-' || charAt(expression,k) == '*' || charAt(expression,k) == '/' || charAt(expression,k) == '^')
-                {
                     break;
-                }
             }
+            printf("\nFound a generic positive number.");
             NODE* newone = appendNode(tokens);
             char* buffer = malloc(sizeof(char) * 100);
             sprintf(buffer, "%s%s", "+", slice(expression, i, k));
@@ -356,12 +362,17 @@ char* parseNoParen(char* expressionWithSpaces)
 
     }
 
-    /* print tokens
+    /* Print out the lexer tokens */
 
-    for (i = 0; i < this.tokens.coreArray.length; i++)
+    tokens = deleteNode(tokens, 0);
+
+    printf("\nFinished Lexing the Input:");
+    printf("\nTOKEN\tTYPE");
+
+    for (i = 0; i < getNodeListLength(tokens); i++)
     {
-        console.log('TOKENS: ' + this.tokens.at(i) + ' ' + this.tokenTypes.at(i));
-    }*/
+        printf("\n%s\t%d", getNode(tokens, i) -> tokenValue, getNode(tokens, i) -> tokenType);
+    }
 
     /* begin traversing and simplifying the intermediate representation */
 
@@ -468,7 +479,7 @@ char* WUMBO_parse(char* expression)
         char* subsecsim = parseNoParen(subsecnoparen);
         finexpression = replaceBetween(expression, startPoint, endPoint + 1, subsecsim);
     }
-    expression = parseNoParen(finexpression);
+    expression = parseNoParen(expression);
     return expression;
 };
 
