@@ -19,7 +19,7 @@ int main( void ){
 	/* slice() test */
 	char buffer3[60] = "STUFFY!";
 	char* testy3 = buffer3;
-	printf("The sliced string: \"%s\"\n", slice(testy3, 1, 4));
+	printf("The sliced string: \"%s\"\n", slice(testy3, 1, 4, 0));
 	
 	/* makeCopy() test */
 	char buffer4[60] = "I AM THE walrus.";

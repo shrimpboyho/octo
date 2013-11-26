@@ -10,7 +10,7 @@ int main( void ){
 	char* buffer = (char*) malloc(60);
 	scanf("%[^\n]", buffer);
 	char* answer = WUMBO_parse(buffer);
-	printf("Answer: %s", answer);
+	printf("\nAnswer: %s\n", answer);
 
 	return 0;
 }

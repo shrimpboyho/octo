@@ -223,10 +223,10 @@ void* strip(char* string){
 
 }
 
-char* slice(char* s, int start, int end){
+char* slice(char* s, int start, int end, int BYTES){
 
 	/* Create a new identical buffer */
-	char* buff = (char*) malloc((end - start) + 2);
+	char* buff = (char*) malloc((end - start) + 2 + BYTES);
 	strncpy(buff, s + start, (end - start) + 1);
 	*(buff + (end - start) + 1) = '\0';
 	return buff;
@@ -282,10 +282,10 @@ char* replaceBetween(char* s, int start, int end, char* what){
 
 	char* buffer = malloc(len(s) + len(what));
 	*(buffer) = '\0';	
-	char* part = slice(s, 0, start - 1);
+	char* part = slice(s, 0, start - 1, 0);
 	strcat(buffer,part);
 	strcat(buffer,what);
-	char* part2 = slice(s, end, len(s) - 1);
+	char* part2 = slice(s, end, len(s) - 1, 0);
 	strcat(buffer, part2);
 	free(part);
 	free(part2);
