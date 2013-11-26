@@ -162,7 +162,7 @@ op OPERATORS = {'+','-','*','/','^','(',')'};
 double parseNum(char *a, int radix)
 {
     double d;
-    sscanf(a, "%lf", &d);
+    sscanf(a, "+%lf", &d);
     return d;
 }
 
@@ -381,10 +381,12 @@ char* parseNoParen(char* expressionWithSpaces)
     {
         if (getNode(tokens, i) -> tokenType == EXP && getNode(tokens, i + 1) -> tokenType == NUM && getNode(tokens, i - 1) -> tokenType == NUM)
         {
+            printf("\nExponentiating %s and %s", getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
             getNode(tokens, i - 1) -> tokenValue = wum_exp(getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
             getNode(tokens, i - 1) -> tokenType = NUM;
             deleteNode(tokens, i);
             deleteNode(tokens, i);
+            printf("\nSolution: %s", getNode(tokens, i) -> tokenValue);
             i = -1;
             continue;
         }
@@ -397,6 +399,7 @@ char* parseNoParen(char* expressionWithSpaces)
         {
             if (getNode(tokens, i) -> tokenType == MUL)
             {
+                printf("\nMultiplying %s and %s", getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
                 getNode(tokens, i - 1) -> tokenValue = wum_mul(getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
                 getNode(tokens, i - 1) -> tokenType = NUM;
                 deleteNode(tokens, i);
@@ -406,6 +409,7 @@ char* parseNoParen(char* expressionWithSpaces)
             }
             if (getNode(tokens, i) -> tokenType == DIV)
             {
+                printf("\nDividing: %s and %s", getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
                 getNode(tokens, i - 1) -> tokenValue = wum_div(getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
                 getNode(tokens, i - 1) -> tokenType = NUM;
                 deleteNode(tokens, i);
@@ -421,6 +425,7 @@ char* parseNoParen(char* expressionWithSpaces)
     {
         if (getNode(tokens, i) -> tokenType == NUM && getNode(tokens, i + 1) -> tokenType == NUM)
         {
+            printf("\nAdding: %s and %s", getNode(tokens, i) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
             getNode(tokens, i) -> tokenValue = wum_add(getNode(tokens, i) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
             getNode(tokens, i) -> tokenType = NUM;
             deleteNode(tokens, i + 1);
