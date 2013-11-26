@@ -346,7 +346,7 @@ char* parseNoParen(char* expressionWithSpaces)
                 }
             }
             NODE* newone = appendNode(tokens);
-            char buffer = malloc(sizeof(char) * 100);
+            char* buffer = malloc(sizeof(char) * 100);
             sprintf(buffer, "%s%s", "+", slice(expression, i, k));
             newone -> tokenValue = buffer;
             newone -> tokenType = NUM;
