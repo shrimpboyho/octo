@@ -461,10 +461,10 @@ char* WUMBO_parse(char* expression)
             }
         }
         char* subsec = slice(expression, startPoint, endPoint + 1); // the sub expression with the parenthesis (2 + 3)
-        printf("\nSubsection: %s\n", subsec);
+        printf("\nSubsection: %s", subsec);
         char* subsecnoparen = slice(expression, startPoint + 1, endPoint - 1);// strip away parenthesis
         free(subsec);
-        printf("\nSubsection after stripping parenthesis: %s\n", subsecnoparen);
+        printf("\nSubsection after stripping parenthesis: %s", subsecnoparen);
         char* subsecsim = parseNoParen(subsecnoparen);
         finexpression = replaceBetween(expression, startPoint, endPoint + 1, subsecsim);
     }
