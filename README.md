@@ -107,9 +107,9 @@ Converts ```n``` to a string and returns a pointer to it.
 Documentation Regarding WUMBO
 -----------------------------------------
 
-```wumbo``` is the simple math expression parser that comes packaged with ```octo```. ```wumbo``` parses a math expression contained with a string and returns the result as a double. The following code outlines how it is generally used. Note that since this module is not complete, although it functions, there may be memory leaks.
+```wumbo``` is the simple math expression parser that comes packaged with ```octo```. ```wumbo``` parses a math expression contained within a string and returns the result as a double. The following code outlines how it is generally used. Note that since this module is not complete, although it functions, there may be memory leaks.
 
-```
+```c
 #include <stdio.h>
 #include <string.h>
 #include "octo.h"
@@ -166,7 +166,7 @@ int main ( void )
 
 ####A Word on Memory
 
-```octo``` uses ```malloc()``` and ```free()``` to create foramt strings of variable size, for the purposes of printing in a nice formatted manner. The reason we do this is so that JSON within JSON can be properly tabulated. This means that we must build up a format string with a lot of tabs depending on how much depth a JSON file has.
+```octo``` uses ```malloc()``` and ```free()``` to create format strings of variable size, for the purposes of printing in a nice formatted manner. The reason we do this is so that JSON within JSON can be properly tabulated. This means that we must build up a format string with a lot of tabs depending on how much depth a JSON file has.
 
 There is one constant known as ```DEPTH``` which is a number. By default it is 20 bytes. It is recommended that ```DEPTH``` be at least 20 bytes. However, one can redefine it to be bigger.
 
