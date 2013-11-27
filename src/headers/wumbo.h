@@ -409,6 +409,8 @@ char *parseNoParen(char *expressionWithSpaces)
             {
                 if (getNode(tokens, i) -> tokenType == MUL)
                 {
+                    
+                    /* TODO: Make this compact like the rest of the logic */
                     char* firstNum = getNode(tokens, i - 1) -> tokenValue;
                     char* secondNum = getNode(tokens, i + 1) -> tokenValue;
                     printf("\nMultiplying %s and %s", firstNum, secondNum);

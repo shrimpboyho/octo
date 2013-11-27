@@ -759,7 +759,7 @@ op OPERATORS = {'+', '-', '*', '/', '^', '(', ')'};
 double parseNum(char *a, int radix)
 {
     double d;
-    sscanf(a, "+%lf", &d);
+    sscanf(a, "%lf", &d);
     printf("\nConverted string %s to double %lf", a, d);
     return d;
 }
@@ -1003,11 +1003,17 @@ char *parseNoParen(char *expressionWithSpaces)
             {
                 if (getNode(tokens, i) -> tokenType == MUL)
                 {
-                    printf("\nMultiplying %s and %s", getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
-                    getNode(tokens, i - 1) -> tokenValue = wum_mul(getNode(tokens, i - 1) -> tokenValue, getNode(tokens, i + 1) -> tokenValue);
+                    
+                    /* TODO: Make this compact like the rest of the logic */
+                    char* firstNum = getNode(tokens, i - 1) -> tokenValue;
+                    char* secondNum = getNode(tokens, i + 1) -> tokenValue;
+                    printf("\nMultiplying %s and %s", firstNum, secondNum);
+                    getNode(tokens, i - 1) -> tokenValue = wum_mul(firstNum, secondNum);
                     getNode(tokens, i - 1) -> tokenType = NUM;
                     deleteNode(tokens, i);
                     deleteNode(tokens, i);
+                    free(firstNum);
+                    free(secondNum);
                     printf("\nSolution: %s", getNode(tokens, i - 1) -> tokenValue);
                     i = -1;
                     continue;
