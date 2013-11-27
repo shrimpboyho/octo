@@ -104,6 +104,25 @@ char* intToString(int n);
 
 Converts ```n``` to a string and returns a pointer to it.
 
+Documentation Regarding WUMBO
+-----------------------------------------
+
+```wumbo``` is the simple math expression parser that comes packaged with ```octo```. ```wumbo``` parses a math expression contained with a string and returns the result as a double. The following code outlines how it is generally used. Note that since this module is not complete, although it functions, there may be memory leaks.
+
+```
+#include <stdio.h>
+#include <string.h>
+#include "octo.h"
+
+int main( void ){
+
+    double answer = WUMBO_parse("2 + ( 2 / 3 )");
+    printf("\nAnswer: %lf\n", answer);
+
+    return 0;
+}
+```
+
 Documentation Regarding The JSON Database
 -----------------------------------------
 The following code shows how the database API basically works.

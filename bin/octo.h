@@ -1073,7 +1073,7 @@ char *parseNoParen(char *expressionWithSpaces)
 }
 
 /* Main parser */
-char *WUMBO_parse(char *expression)
+double WUMBO_parse(char *expression)
 {
     char *finexpression = makeCopy(expression);
     while (strchr(expression, '(') != NULL)
@@ -1106,7 +1106,7 @@ char *WUMBO_parse(char *expression)
         free(expression);
     }
     finexpression = parseNoParen(finexpression);
-    return finexpression;
+    return parseNum(finexpression, 10);
 };
 
 #endif /* WUMBO_H */

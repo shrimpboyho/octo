@@ -9,8 +9,8 @@ int main( void ){
 
 	char* buffer = (char*) malloc(60);
 	scanf("%[^\n]", buffer);
-	char* answer = WUMBO_parse(buffer);
-	printf("\nAnswer: %s\n", answer);
+	double answer = WUMBO_parse(buffer);
+	printf("\nAnswer: %lf\n", answer);
 
 	return 0;
 }
