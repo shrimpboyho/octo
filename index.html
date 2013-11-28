@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>octo by shrimpboyho</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>octo</h1>
+        <h2>A Single Header Library for GCC C</h2>
+        <a href="https://github.com/shrimpboyho/octo" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="octo---a-gcc-c-library" class="anchor" href="#octo---a-gcc-c-library"><span class="octicon octicon-link"></span></a><a href="">octo</a> - A GCC C Library</h1>
+
+<p><a href="https://drone.io/github.com/shrimpboyho/octo/latest"><img src="https://drone.io/github.com/shrimpboyho/octo/status.png" alt="Build Status"></a></p>
+
+<p>A library for doing various things in C</p>
+
+<h2>
+<a name="how-to-install" class="anchor" href="#how-to-install"><span class="octicon octicon-link"></span></a>How to Install</h2>
+
+<p>First get a copy of the library by git cloning it:</p>
+
+<div class="highlight highlight-bash"><pre>git clone https://github.com/shrimpboyho/octo.git
+<span class="nb">cd </span>octo
+</pre></div>
+
+<p>Then you can just include the header file in your code:</p>
+
+<div class="highlight highlight-c"><pre><span class="cp">#include "octo.h"</span>
+</pre></div>
+
+<h2>
+<a name="documentation-regarding-strings" class="anchor" href="#documentation-regarding-strings"><span class="octicon octicon-link"></span></a>Documentation Regarding Strings</h2>
+
+<h3>
+<a name="get-info-on-a-string" class="anchor" href="#get-info-on-a-string"><span class="octicon octicon-link"></span></a>Get info on a string</h3>
+
+<div class="highlight highlight-c"><pre><span class="kt">size_t</span> <span class="nf">len</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">thing</span><span class="p">);</span>
+</pre></div>
+
+<p>Returns the number of characters in <code>thing</code> excluding the null character.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span> <span class="nf">charAt</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</pre></div>
+
+<p>Returns the character in the string <code>s</code> at the index of <code>n</code></p>
+
+<h3>
+<a name="make-an-identical-copy-of-a-string" class="anchor" href="#make-an-identical-copy-of-a-string"><span class="octicon octicon-link"></span></a>Make an identical copy of a string</h3>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span><span class="o">*</span> <span class="nf">makeCopy</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">thing</span><span class="p">);</span>
+</pre></div>
+
+<p>Creates a new copy of <code>thing</code> in the memory and returns a pointer to it.</p>
+
+<h3>
+<a name="modify-the-original-string" class="anchor" href="#modify-the-original-string"><span class="octicon octicon-link"></span></a>Modify the original string</h3>
+
+<div class="highlight highlight-c"><pre><span class="kt">void</span><span class="o">*</span> <span class="nf">strip</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">thing</span><span class="p">);</span>
+</pre></div>
+
+<p>Trims off both leading and trailing whitespace on <code>thing</code>. It modifies the original buffer.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">void</span><span class="o">*</span> <span class="nf">lstrip</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">thing</span><span class="p">);</span>
+</pre></div>
+
+<p>Trims off only the leading whitespace on <code>thing</code>. It modifies the original buffer.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">void</span><span class="o">*</span> <span class="nf">rstrip</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">thing</span><span class="p">);</span>
+</pre></div>
+
+<p>Trims off only the trailing whitespace on <code>thing</code>. It modifies the original buffer.</p>
+
+<h3>
+<a name="create-new-versions-of-strings" class="anchor" href="#create-new-versions-of-strings"><span class="octicon octicon-link"></span></a>Create new versions of strings</h3>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span><span class="o">*</span> <span class="nf">slice</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">thing</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">,</span> <span class="kt">int</span> <span class="n">BYTES</span><span class="p">);</span>
+</pre></div>
+
+<p>Creates a new string from <code>thing</code> that consists of the characters from the starting index (<code>start</code>), to the ending index (<code>end</code>), and returns a <code>char*</code> to it. It does not modify the original buffer. The argument <code>BYTES</code> is usually zero if you want the returned string to perfectly fit in the buffer. If you plan on modifying the string after you get it from this function, it is best to set <code>BYTES</code> to some other value, such as 30, giving you 30 bytes of additional padding.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span><span class="o">*</span> <span class="nf">replaceBetween</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">ham</span><span class="p">);</span>
+</pre></div>
+
+<p>Replaces the content of the string <code>s</code> between the indexes of <code>start</code> and <code>end</code> with the content of the string <code>ham</code>. Returns a pointer to the new buffer.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span><span class="o">*</span> <span class="nf">toUpperCase</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
+</pre></div>
+
+<p>Creates a new copy of <code>s</code> in which all the characters are uppercase and returns a pointer to it.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span><span class="o">*</span> <span class="nf">toLowerCase</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
+</pre></div>
+
+<p>Creates a new copy of <code>s</code> in which all the characters are lowercase and returns a pointer to it.</p>
+
+<h3>
+<a name="convert-between-strings-and-other-data-types" class="anchor" href="#convert-between-strings-and-other-data-types"><span class="octicon octicon-link"></span></a>Convert between strings and other data types</h3>
+
+<div class="highlight highlight-c"><pre><span class="kt">int</span> <span class="nf">stringToInt</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">s</span><span class="p">);</span>
+</pre></div>
+
+<p>Converts <code>s</code> to an integer and returns it.</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span><span class="o">*</span> <span class="nf">intToString</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+</pre></div>
+
+<p>Converts <code>n</code> to a string and returns a pointer to it.</p>
+
+<h2>
+<a name="documentation-regarding-wumbo" class="anchor" href="#documentation-regarding-wumbo"><span class="octicon octicon-link"></span></a>Documentation Regarding WUMBO</h2>
+
+<p><code>wumbo</code> is the simple math expression parser that comes packaged with <code>octo</code>. <code>wumbo</code> parses a math expression contained within a string and returns the result as a double. The following code outlines how it is generally used. Note that since this module is not complete, although it functions, there may be memory leaks.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include "octo.h"</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span> <span class="kt">void</span> <span class="p">){</span>
+
+    <span class="kt">double</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">WUMBO_parse</span><span class="p">(</span><span class="s">"2 + ( 2 / 3 )"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Answer: %lf</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">answer</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h2>
+<a name="documentation-regarding-the-json-database" class="anchor" href="#documentation-regarding-the-json-database"><span class="octicon octicon-link"></span></a>Documentation Regarding The JSON Database</h2>
+
+<p>The following code shows how the database API basically works.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp">#include "database.h"</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cm">/* Define how greedy you want octo to be with memory */</span>
+<span class="cp">#define DEPTH 20</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span> <span class="kt">void</span> <span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="cm">/* Create a database */</span>
+    <span class="n">DB</span> <span class="o">*</span><span class="n">bank</span> <span class="o">=</span> <span class="n">newDB</span><span class="p">(</span><span class="s">"Employees"</span><span class="p">);</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"Name of db is: %s"</span><span class="p">,</span> <span class="n">bank</span> <span class="o">-&gt;</span> <span class="n">name</span><span class="p">);</span>
+    <span class="n">addValue</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="s">"Daniel"</span><span class="p">,</span> <span class="s">"Programmer"</span><span class="p">,</span> <span class="n">STRING_TYPE</span><span class="p">);</span>
+    <span class="n">addValue</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="s">"Kevin"</span><span class="p">,</span> <span class="s">"Hardware"</span><span class="p">,</span> <span class="n">STRING_TYPE</span><span class="p">);</span>
+
+    <span class="cm">/* Create another database*/</span>
+    <span class="n">DB</span> <span class="o">*</span><span class="n">money</span> <span class="o">=</span> <span class="n">newDB</span><span class="p">(</span><span class="s">"Money"</span><span class="p">);</span>
+    <span class="n">addValue</span><span class="p">(</span><span class="n">money</span><span class="p">,</span> <span class="s">"Monday"</span><span class="p">,</span> <span class="s">"5"</span><span class="p">,</span> <span class="n">NUM_TYPE</span><span class="p">);</span>
+    <span class="n">addValue</span><span class="p">(</span><span class="n">money</span><span class="p">,</span> <span class="s">"Tuesday"</span><span class="p">,</span> <span class="s">"7"</span><span class="p">,</span> <span class="n">NUM_TYPE</span><span class="p">);</span>
+
+    <span class="cm">/* Shove the money database in the bank */</span>
+    <span class="n">addDB</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span><span class="n">money</span><span class="p">);</span>
+
+    <span class="cm">/* Pretty print the entire database*/</span>
+    <span class="n">prettyPrint</span><span class="p">(</span><span class="n">bank</span><span class="p">);</span>
+
+    <span class="cm">/* Dump database contents to json file */</span>
+    <span class="n">dumpDB</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="s">"bank.json"</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p><code>octo</code> currently has very limited JSON database support and functionality. For now, one can dump JSON contents to a file after building the file via the API. Note that within <code>octo</code> the term <code>DB</code> (database) is synonymous with the term <code>JSON Document</code></p>
+
+<h4>
+<a name="a-word-on-memory" class="anchor" href="#a-word-on-memory"><span class="octicon octicon-link"></span></a>A Word on Memory</h4>
+
+<p><code>octo</code> uses <code>malloc()</code> and <code>free()</code> to create format strings of variable size, for the purposes of printing in a nice formatted manner. The reason we do this is so that JSON within JSON can be properly tabulated. This means that we must build up a format string with a lot of tabs depending on how much depth a JSON file has.</p>
+
+<p>There is one constant known as <code>DEPTH</code> which is a number. By default it is 20 bytes. It is recommended that <code>DEPTH</code> be at least 20 bytes. However, one can redefine it to be bigger.</p>
+
+<div class="highlight highlight-c"><pre><span class="cp">#define DEPTH 2323</span>
+</pre></div>
+
+<h4>
+<a name="simple-database-creation" class="anchor" href="#simple-database-creation"><span class="octicon octicon-link"></span></a>Simple Database Creation</h4>
+
+<p>Creating a database is simple and can be done by invoking the following function:</p>
+
+<div class="highlight highlight-c"><pre><span class="cm">/* Create an empty database */</span>
+<span class="n">DB</span> <span class="o">*</span><span class="n">bank</span> <span class="o">=</span> <span class="n">newDB</span><span class="p">(</span><span class="s">"Employees"</span><span class="p">);</span>
+</pre></div>
+
+<p>The JSON document is represented as such:</p>
+
+<div class="highlight highlight-JSON"><pre><span class="p">{</span>
+    <span class="nt">"Employees"</span> <span class="p">:</span> <span class="p">{</span>
+
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>From here one can access the JSON document name:</p>
+
+<div class="highlight highlight-c"><pre><span class="kt">char</span> <span class="o">*</span><span class="n">dbname</span> <span class="o">=</span> <span class="n">bank</span> <span class="o">-&gt;</span> <span class="n">name</span><span class="p">;</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">"Name of db is: %s"</span><span class="p">,</span> <span class="n">dbname</span><span class="p">);</span>
+
+<span class="cm">/** OUTPUT:</span>
+<span class="cm">*   Name of db is: Employees</span>
+<span class="cm">*/</span>
+</pre></div>
+
+<h4>
+<a name="adding-data-to-a-database" class="anchor" href="#adding-data-to-a-database"><span class="octicon octicon-link"></span></a>Adding Data To A Database</h4>
+
+<p>Adding a simple key value pair can be done by calling the following function:</p>
+
+<div class="highlight highlight-c"><pre><span class="n">DB</span> <span class="o">*</span><span class="n">money</span> <span class="o">=</span> <span class="n">newDB</span><span class="p">(</span><span class="s">"Money"</span><span class="p">);</span>
+<span class="n">addValue</span><span class="p">(</span><span class="n">money</span><span class="p">,</span> <span class="s">"Monday"</span><span class="p">,</span> <span class="s">"5"</span><span class="p">,</span> <span class="n">NUM_TYPE</span><span class="p">);</span>
+</pre></div>
+
+<p>The above code adds the value of <code>5</code> with the key of <code>"Monday"</code> to the database known as <code>money</code>. Notice the fourth argument is a constant that specifies that the value of <code>5</code> is to be interpretted as a number rather than as a string.</p>
+
+<p>There are several type constants you can use as arguments to the <code>addValue()</code> function:</p>
+
+<div class="highlight highlight-c"><pre><span class="n">NUM_TYPE</span> <span class="cm">/* For all types of numbers, decimal and floating point */</span>
+<span class="n">STRING_TYPE</span> <span class="cm">/* For strings */</span>
+<span class="n">BOOL_TYPE</span> <span class="cm">/* For true and false booleans */</span>
+<span class="n">ARRAY_TYPE</span> <span class="cm">/* For array types */</span>
+</pre></div>
+
+<h4>
+<a name="adding-json-inside-of-json" class="anchor" href="#adding-json-inside-of-json"><span class="octicon octicon-link"></span></a>Adding JSON inside of JSON</h4>
+
+<p>This is as simple as adding a database to another database. The <code>addDB()</code> function takes two arguments: the destination database and the source database.</p>
+
+<div class="highlight highlight-c"><pre><span class="cm">/* Create a database */</span>
+<span class="n">DB</span> <span class="o">*</span><span class="n">bank</span> <span class="o">=</span> <span class="n">newDB</span><span class="p">(</span><span class="s">"Employees"</span><span class="p">);</span>
+
+<span class="cm">/* Create another database*/</span>
+<span class="n">DB</span> <span class="o">*</span><span class="n">money</span> <span class="o">=</span> <span class="n">newDB</span><span class="p">(</span><span class="s">"Money"</span><span class="p">);</span>
+
+<span class="cm">/* Shove the money database in the bank database */</span>
+<span class="n">addDB</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="n">money</span><span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="deleting-stuff" class="anchor" href="#deleting-stuff"><span class="octicon octicon-link"></span></a>Deleting Stuff</h4>
+
+<p>Anything within a database can be deleted if you know the key. The following code shows how the value associated with the key of <code>Nash</code> can be deleted from the database.</p>
+
+<div class="highlight highlight-c"><pre><span class="n">deleteByID</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="s">"Nash"</span><span class="p">);</span>
+</pre></div>
+
+<p>Note that you can also delete an entire database within a database in the same manner. For example, the following code removes the database known as <code>Money</code>:</p>
+
+<div class="highlight highlight-c"><pre><span class="n">deleteByID</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="s">"Money"</span><span class="p">);</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/shrimpboyho/octo/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/shrimpboyho/octo/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/shrimpboyho/octo"></a> is maintained by <a href="https://github.com/shrimpboyho">shrimpboyho</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
