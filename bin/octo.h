@@ -165,7 +165,8 @@ void freeDB(DB *t)
     }
 }
 
-#endif /* NODES_H */#ifndef OCTO_H
+#endif /* NODES_H */
+#ifndef OCTO_H
 #define OCTO_H
 
 #include <stdlib.h>
@@ -592,7 +593,8 @@ void deleteByID(DB *db, const char *id)
     }
     deleteID(db -> nextID, index);
 
-}#ifndef WUMBO_H
+}
+#ifndef WUMBO_H
 #define WUMBO_H
 
 #include <stdio.h>
