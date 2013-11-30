@@ -113,12 +113,14 @@ NODE *deleteNode(NODE *start, int index)
         NODE *l = getNode(start, index + 1);
         NODE *d = getNode(start, index);
         f -> next = l;
+        free(f -> tokenValue);
         free(d);
         return start;
     }
     if (index == 0)
     {
         NODE *up = start -> next;
+        free(start -> tokenValue);
         free(start);
         return up;
     }
@@ -127,6 +129,7 @@ NODE *deleteNode(NODE *start, int index)
         NODE *r = getNode(start, index);
         NODE *c = getNode(start, index - 1);
         c -> next = NULL;
+        free(r -> tokenValue);
         free(r);
         return start;
     }
@@ -473,7 +476,7 @@ char *parseNoParen(char *expressionWithSpaces)
         sprintf(buffy + strlen(buffy), "%s", getNode(tokens, i) -> tokenValue);
     }
 
-    // TODO: FREE ALL THE MEMORY USED BY THE NODE LIST
+    /* TODO: FREE ALL THE MEMORY USED BY THE NODE LIST */
 
     return buffy;
 }
