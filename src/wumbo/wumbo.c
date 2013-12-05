@@ -11,6 +11,6 @@ int main( void ){
 	scanf("%[^\n]", buffer);
 	double answer = WUMBO_parse(buffer);
 	printf("\nAnswer: %lf\n", answer);
-
+	free(buffer);
 	return 0;
 }

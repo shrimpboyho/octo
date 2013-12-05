@@ -610,6 +610,12 @@ void deleteByID(DB *db, const char *id)
 #define EXP 3
 #define DIV 4
 
+/* String literals */
+
+char* MUL_SIGN = "*";
+char* DIV_SIGN = "/";
+char* EXP_SIGN = "^";
+
 /* Create a ghetto boolean data type */
 
 typedef int bool;
@@ -703,6 +709,14 @@ size_t getNodeListLength(NODE *start)
 
 NODE *deleteNode(NODE *start, int index)
 {
+    if (index + 1 == getNodeListLength(start))
+    {
+        NODE *r = getNode(start, index);
+        NODE *c = getNode(start, index - 1);
+        c -> next = NULL;
+        free(r);
+        return start;
+    }
     if (index > 0)
     {
         NODE *f = getNode(start, index - 1);
@@ -717,14 +731,6 @@ NODE *deleteNode(NODE *start, int index)
         NODE *up = start -> next;
         free(start);
         return up;
-    }
-    if (index + 1 == getNodeListLength(start))
-    {
-        NODE *r = getNode(start, index);
-        NODE *c = getNode(start, index - 1);
-        c -> next = NULL;
-        free(r);
-        return start;
     }
 }
 
@@ -847,8 +853,7 @@ char *parseNoParen(char *expressionWithSpaces)
         sprintf(expression, "%c%s", '+', tmpexp);
     else
         sprintf(expression, "%s", tmpexp);
-
-    free(expressionWithoutSpaces);
+    free(expressionWithSpaces);
     free(tmpexp);
 
     printf("\nExpression With + Signs: %s", expression);
@@ -892,6 +897,7 @@ char *parseNoParen(char *expressionWithSpaces)
     /* Single pass lexer */
 
     NODE *tokens = generateNode();
+    tokens -> tokenValue = NULL;
 
     int i, k;
     for (i = 0; i < len(expression); i++)
@@ -902,7 +908,7 @@ char *parseNoParen(char *expressionWithSpaces)
         {
             printf("\nFound a multiplication sign.");
             NODE *newone = appendNode(tokens);
-            newone -> tokenValue = "*";
+            newone -> tokenValue = MUL_SIGN;
             newone -> tokenType = MUL;
             continue;
         }
@@ -912,7 +918,7 @@ char *parseNoParen(char *expressionWithSpaces)
         {
             printf("\nFound a division sign.");
             NODE *newone = appendNode(tokens);
-            newone -> tokenValue = "/";
+            newone -> tokenValue = DIV_SIGN;
             newone -> tokenType = DIV;
             continue;
         }
@@ -922,7 +928,7 @@ char *parseNoParen(char *expressionWithSpaces)
         {
             printf("\nFound an exponentiation sign.");
             NODE *newone = appendNode(tokens);
-            newone -> tokenValue = "^";
+            newone -> tokenValue = EXP_SIGN;
             newone -> tokenType = EXP;
             continue;
         }
@@ -1069,7 +1075,7 @@ char *parseNoParen(char *expressionWithSpaces)
         sprintf(buffy + strlen(buffy), "%s", getNode(tokens, i) -> tokenValue);
     }
 
-    // TODO: FREE ALL THE MEMORY USED BY THE NODE LIST
+    /* TODO: FREE ALL THE MEMORY USED BY THE NODE LIST */
 
     return buffy;
 }
@@ -1078,37 +1084,39 @@ char *parseNoParen(char *expressionWithSpaces)
 double WUMBO_parse(char *expression)
 {
     char *finexpression = makeCopy(expression);
-    while (strchr(expression, '(') != NULL)
+    while (strchr(finexpression, '(') != NULL)
     {
-        printf("Expression: %s\n", expression);
-        int startPoint = strchr(expression, '(') - expression;
+        printf("Expression: %s\n", finexpression);
+        int startPoint = strchr(finexpression, '(') - finexpression;
         printf("Start point: %d\n", startPoint);
         int endPoint;
         int i;
         for (i = startPoint + 1; i < len(expression); i++)
         {
-            if (charAt(expression, i) == OPERATORS.o_paren)
+            if (charAt(finexpression, i) == OPERATORS.o_paren)
             {
                 startPoint = i;
             }
-            if (charAt(expression, i) == OPERATORS.c_paren)
+            if (charAt(finexpression, i) == OPERATORS.c_paren)
             {
                 endPoint = i;
                 break;
             }
         }
-        char *subsec = slice(expression, startPoint, endPoint + 1, 0); // the sub expression with the parenthesis (2 + 3)
+        char *subsec = slice(finexpression, startPoint, endPoint + 1, 0); // the sub expression with the parenthesis (2 + 3)
         printf("\nSubsection: %s", subsec);
-        char *subsecnoparen = slice(expression, startPoint + 1, endPoint - 1, 0);// strip away parenthesis
+        char *subsecnoparen = slice(finexpression, startPoint + 1, endPoint - 1, 0);// strip away parenthesis
         free(subsec);
         printf("\nSubsection after stripping parenthesis: %s", subsecnoparen);
         char *subsecsim = parseNoParen(subsecnoparen);
-        expression = finexpression;
+        char *temp = finexpression;
         finexpression = replaceBetween(finexpression, startPoint, endPoint + 1, subsecsim);
-        free(expression);
+        free(temp);
     }
     finexpression = parseNoParen(finexpression);
-    return parseNum(finexpression, 10);
+    double answer = parseNum(finexpression, 10);
+    free(finexpression);
+    return answer;
 };
 
 #endif /* WUMBO_H */

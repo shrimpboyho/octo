@@ -10,4 +10,4 @@ all:
 
 wumbo:
 	gcc src/wumbo/wumbo.c -lm -o thing
-	valgrind --tool=memcheck --leak-check=yes ./thing
+	valgrind --tool=memcheck --leak-check=full ./thing
