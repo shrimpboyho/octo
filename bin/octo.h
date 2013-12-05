@@ -1077,6 +1077,16 @@ char *parseNoParen(char *expressionWithSpaces)
 
     /* TODO: FREE ALL THE MEMORY USED BY THE NODE LIST */
 
+    NODE* head = tokens;
+    while(head -> next != NULL)
+    {
+        NODE* temp = head;
+        head = head -> next;
+        if(temp -> tokenType == NUM)
+            free(temp -> tokenValue);
+        free(temp);
+    }
+
     return buffy;
 }
 
